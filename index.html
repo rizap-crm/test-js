@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+  </head>
+
+  <body>
+    <div style="margin-left:30px; font-size:40px; width:600px; text-align: center" >折讓單</div>
+    <img id = "sample" src="">
+    <iframe id="iframe123" frameborder="0" width="592" height="865" style="margin-left:30px" >
+    </iframe>
+  
+    <!-- V1.3.2 -->
+    <!--<script src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>-->
+    <!--<script src = "jspdf.debug.1.3.2.js"></script>-->
+    
+    <!-- V2.3.0 -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.0/jspdf.umd.min.js"></script>-->    
+    <script src = "jspdf.umd.2.3.0.js"></script>
+        
+    
+    <!--以下自 https://rawgit.com/MrRio/jsPDF/master/fontconverter/fontconverter.html 轉換 TTF 字型檔-->
+    <!--免費中文字型下載 https://www.fairyhorn.cc/1526/chinese-fonts-free-download -->
+    <script src = "王漢宗中明體繁-normal.js"></script>
+    <script src = "王漢宗特黑體繁-normal.js"></script>
+    <script src = "opens-normal.js"></script>
+
+    <!--rebate is a Base64 encoded string of rebate-using-王漢宗中明體繁.jpg by https://www.base64-image.de-->
+    <script src="rebate-base64.js"></script>
+    
+    <script src="base64img.js"></script>
+    <script src="dateConvert.js"></script>
+       
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+    <script>
+      function drawPDF(background){
+        const queryString = window.location.search;
+        console.log(queryString);
+        const urlParams = new URLSearchParams(queryString);
+        const date = urlParams.get('Date')
+        console.log(date);
+
+        window.jsPDF = window.jspdf.jsPDF; // add this line of code
+
+        var opt = {
+         orientation: 'p',
+         hotfixes: ["px_scaling"],
+         unit: 'px',
+         format: 'a4',
+         putOnlyUsedFonts:true,
+         floatPrecision: 16 // or "smart", default is 16
+        }
+
+        var doc = new jsPDF(opt);
+
+
+        doc.setFont('王漢宗中明體繁');
+        doc.setFontSize(9);
+
+        // doc.addImage(rebate, 10, 10, 780, 480);
+        doc.addImage(background, 10, 10, 780, 480);
+        doc.text('台灣萊札普股份', 120, 26);
+        doc.text('有限公司', 120, 40);
+
+        doc.setFont('opens');
+        doc.setFontSize(15);
+        doc.text('✔', 610, 230); //應稅
+        doc.text('✔', 715, 125); //第一聯
+        doc.text('✔', 735, 125); //第二聯
+        doc.text('✔', 753, 125); //第三聯
+        doc.text('✔', 771, 125); //第四聯
+
+        //doc.save("test.pdf");
+        //document.getElementById("iframe123").src = doc.output('datauristring');//在iframe中顯示
+        $("#iframe123").attr("src", doc.output('datauristring'));
+      }
+      
+  
+      var img = new Image();
+      img.src = "rebate-using-王漢宗中明體繁.jpg";
+          
+      img.addEventListener("load", function() {
+
+        var backgroundStr=imgToBase64(img);
+        
+        drawPDF(backgroundStr);        
+        
+      }, false);
+      
+    </script>
+    
+
+  </body>
+
+</html>
