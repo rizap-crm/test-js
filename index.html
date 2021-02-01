@@ -82,13 +82,18 @@
       var img = new Image();
       img.src = "rebate-using-王漢宗中明體繁.jpg";
           
-      img.addEventListener("load", function() {
-
+//      img.addEventListener("load", function() {
+//
+//        var backgroundStr=imgToBase64(img);
+//        
+//        drawPDF(backgroundStr);        
+//        
+//      }, false);
+      
+      img.onload = function () {
         var backgroundStr=imgToBase64(img);
-        
         drawPDF(backgroundStr);        
-        
-      }, false);
+      }
       
     </script>
     
