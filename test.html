@@ -6,37 +6,33 @@
   </head>
 
   <body>
-    <!-- 顯示 PDF 內容 -->
     <iframe id="iframe123" frameborder="0" width="400" height="500"> 
     </iframe>
     
     <script src = "jspdf.umd.2.3.0.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
     
     <script src = "王漢宗中明體繁-normal.js"></script>
+    <script src="rebate-base64.js"></script>
 
     <script>
       window.jsPDF = window.jspdf.jsPDF; 
       
       var opt = {
-       orientation: 'p',
-       unit: 'mm',
-       format: 'a4',
-       putOnlyUsedFonts:true,
+       orientation: 'p', unit: 'mm',
+       format: 'a4',     putOnlyUsedFonts:true,
        floatPrecision: 16 // or "smart", default is 16
       }
       
       var doc = new jsPDF(opt);
-      doc.setFont('王漢宗中明體繁');
-      doc.setFontSize(24);
-      doc.text('使用 王漢宗中明體繁 字型', 10, 10);
+//      doc.setFont('王漢宗中明體繁');
+//      doc.setFontSize(24);
+//      doc.text('使用 王漢宗中明體繁 字型', 10, 10);
 
-      //document.getElementById("iframe123").src = 
-      //                                      doc.output('datauristring');
-       $("#iframe123").attr("src", doc.output('datauristring'));
+      doc.addImage(rebate, 10, 10, 780, 480);
+      $("#iframe123").attr("src", doc.output('datauristring'));
     </script>
     
-
   </body>
-
 </html>
