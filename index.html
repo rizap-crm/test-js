@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Untitled Document</title>
+    <title>折讓單</title>
   </head>
 
   <body>
@@ -74,22 +74,115 @@
         doc.line(0, 410, 1140, 410);        
         doc.line(563, 0, 563, 888);        
         
-        doc.text('台灣萊札普股份', 105, 40);
-        doc.text('有限公司', 105, 50);
-        doc.text('台灣萊札普股份', 670, 40);
-        doc.text('有限公司', 670, 50);
-        doc.text('台灣萊札普股份', 105, 460);
-        doc.text('有限公司', 105, 470);
-        doc.text('台灣萊札普股份', 670, 460);
-        doc.text('有限公司', 670, 470);        
-//
-//        doc.setFont('opens');
-//        doc.setFontSize(15);
-//        doc.text('✔', 610, 230); //應稅
-//        doc.text('✔', 715, 125); //第一聯
-//        doc.text('✔', 735, 125); //第二聯
-//        doc.text('✔', 753, 125); //第三聯
-//        doc.text('✔', 771, 125); //第四聯
+        var startX=0;
+        var startY=0;
+        var deltaX=562;
+        var deltaY=420;
+        
+        doc.text('台灣萊札普股份',   startX+102, startY+40);
+        doc.text('有限公司',        startX+102, startY+50);
+        doc.text('83500950',       startX+102, startY+66);
+        doc.text('台北市中山區南京',  startX+102, startY+83);
+        doc.text('東路一段86號5樓',  startX+102, startY+93);
+        doc.text('110',            startX+265, startY+90);  //年
+        doc.text('3',              startX+305, startY+90);    //月
+        doc.text('3',              startX+340, startX+90);    //日      
+        doc.text('二',             startX+40, startY+174);    //聯式      
+        doc.text('109.03.01',      startX+53, startX+174);    //發票日期  
+        doc.text('MN-02860182',    startX+100, startY+174);    //發票號碼          
+        doc.text('標準24堂課程',    startX+172, startY+174);    //發票號碼 
+        doc.text('1',             startX+245, startY+174);    //數量         
+        doc.text('50,000',        startX+265, startY+174);    //單價         
+        doc.text('50,000',        startX+300, startY+174);    //折讓金額         
+        doc.text('5%',            startX+380, startY+174);    //營業稅額         
+        doc.text('康博銓',         startX+105, startY+305);    //原買受人名稱    
+        doc.text('56662635',      startX+105, startY+327);    //原買受人統一編號          
+        doc.text('350401 苗栗市竹南鎮科北五路二號三樓', startX+276, startY+286.5);    //原買受人地址         
+        
+        doc.text('台灣萊札普股份',   startX+deltaX+102, startY+40);
+        doc.text('有限公司',        startX+deltaX+102, startY+50);
+        doc.text('83500950',       startX+deltaX+102, startY+66);
+        doc.text('台北市中山區南京',  startX+deltaX+102, startY+83);
+        doc.text('東路一段86號5樓',  startX+deltaX+102, startY+93);
+        doc.text('110',            startX+deltaX+265, startY+90);  //年
+        doc.text('3',              startX+deltaX+305, startY+90);    //月
+        doc.text('3',              startX+deltaX+340, startX+90);    //日      
+        doc.text('二',             startX+deltaX+40, startY+174);    //聯式      
+        doc.text('109.03.01',      startX+deltaX+53, startX+174);    //發票日期  
+        doc.text('MN-02860182',    startX+deltaX+100, startY+174);    //發票號碼          
+        doc.text('標準24堂課程',    startX+deltaX+172, startY+174);    //發票號碼 
+        doc.text('1',             startX+deltaX+245, startY+174);    //數量         
+        doc.text('50,000',        startX+deltaX+265, startY+174);    //單價         
+        doc.text('50,000',        startX+deltaX+300, startY+174);    //折讓金額         
+        doc.text('5%',            startX+deltaX+380, startY+174);    //營業稅額         
+        doc.text('康博銓',         startX+deltaX+105, startY+305);    //原買受人名稱    
+        doc.text('56662635',      startX+deltaX+105, startY+327);    //原買受人統一編號          
+        doc.text('350401 苗栗市竹南鎮科北五路二號三樓', startX+deltaX+276, startY+286.5);    //原買受人地址               
+         
+        doc.text('台灣萊札普股份',   startX+102, startY+deltaY+40);
+        doc.text('有限公司',        startX+102, startY+deltaY+50);
+        doc.text('83500950',       startX+102, startY+deltaY+66);
+        doc.text('台北市中山區南京',  startX+102, startY+deltaY+83);
+        doc.text('東路一段86號5樓',  startX+102, startY+deltaY+93);
+        doc.text('110',            startX+265, startY+deltaY+90);  //年
+        doc.text('3',              startX+305, startY+deltaY+90);    //月
+        doc.text('3',              startX+340, startY+deltaY+90);    //日      
+        doc.text('二',             startX+40, startY+deltaY+174);    //聯式      
+        doc.text('109.03.01',      startX+53, startY+deltaY+174);    //發票日期  
+        doc.text('MN-02860182',    startX+100, startY+deltaY+174);    //發票號碼          
+        doc.text('標準24堂課程',    startX+172, startY+deltaY+174);    //發票號碼 
+        doc.text('1',             startX+245, startY+deltaY+174);    //數量         
+        doc.text('50,000',        startX+265, startY+deltaY+174);    //單價         
+        doc.text('50,000',        startX+300, startY+deltaY+174);    //折讓金額         
+        doc.text('5%',            startX+380, startY+deltaY+174);    //營業稅額         
+        doc.text('康博銓',         startX+105, startY+deltaY+305);    //原買受人名稱    
+        doc.text('56662635',      startX+105, startY+deltaY+327);    //原買受人統一編號          
+        doc.text('350401 苗栗市竹南鎮科北五路二號三樓', startX+276, startY+deltaY+286.5);    //原買受人地址        
+        
+        doc.text('台灣萊札普股份',   startX+deltaX+102, startY+deltaY+40);
+        doc.text('有限公司',        startX+deltaX+102, startY+deltaY+50);
+        doc.text('83500950',       startX+deltaX+102, startY+deltaY+66);
+        doc.text('台北市中山區南京',  startX+deltaX+102, startY+deltaY+83);
+        doc.text('東路一段86號5樓',  startX+deltaX+102, startY+deltaY+93);
+        doc.text('110',            startX+deltaX+265, startY+deltaY+90);  //年
+        doc.text('3',              startX+deltaX+305, startY+deltaY+90);    //月
+        doc.text('3',              startX+deltaX+340, startY+deltaY+90);    //日      
+        doc.text('二',             startX+deltaX+40, startY+deltaY+174);    //聯式      
+        doc.text('109.03.01',      startX+deltaX+53, startY+deltaY+174);    //發票日期  
+        doc.text('MN-02860182',    startX+deltaX+100, startY+deltaY+174);    //發票號碼          
+        doc.text('標準24堂課程',    startX+deltaX+172, startY+deltaY+174);    //發票號碼 
+        doc.text('1',             startX+deltaX+245, startY+deltaY+174);    //數量         
+        doc.text('50,000',        startX+deltaX+265, startY+deltaY+174);    //單價         
+        doc.text('50,000',        startX+deltaX+300, startY+deltaY+174);    //折讓金額         
+        doc.text('5%',            startX+deltaX+380, startY+deltaY+174);    //營業稅額         
+        doc.text('康博銓',         startX+deltaX+105, startY+deltaY+305);    //原買受人名稱    
+        doc.text('56662635',      startX+deltaX+105, startY+deltaY+327);    //原買受人統一編號          
+        doc.text('350401 苗栗市竹南鎮科北五路二號三樓', startX+deltaX+276, startY+deltaY+286.5);    //原買受人地址          
+        
+//        doc.text('台灣萊札普股份', 662, 460);
+//        doc.text('有限公司', 662, 470);   
+//        doc.text('83500950', 662, 486);
+//        doc.text('台北市中山區南京', 662, 503);
+//        doc.text('東路一段86號5樓', 662, 513);  
+//        doc.text('110', 825, 510);  //年
+//        doc.text('3', 865, 510);    //月
+//        doc.text('3', 900, 510);    //日  
+//        doc.text('二', 600, 594);    //聯式          
+//        doc.text('109.03.01', 613, 594);    //發票日期   
+//        doc.text('MN-02860182', 660, 594);    //發票號碼          
+        
+
+        doc.setFont('opens');
+        doc.setFontSize(10);
+        doc.text('✔', 488, 104); //第一聯
+        doc.text('✔', 1060, 104); //第二聯
+        doc.text('✔', 500, 523); //第三聯
+        doc.text('✔', 1083, 524); //第四聯
+        
+        doc.text('✔', 420, 175); //應稅1        
+        doc.text('✔', 980, 175); //應稅2   
+        doc.text('✔', 420, 595); //應稅3        
+        doc.text('✔', 980, 595); //應稅4           
 
         //doc.save("test.pdf");
         //document.getElementById("iframe123").src = doc.output('datauristring');//在iframe中顯示
