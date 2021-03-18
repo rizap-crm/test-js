@@ -7,13 +7,149 @@
   </head>
 
   <body>
-    <div style="margin-left:30px; font-size:40px; width:1000px; text-align: center" >折讓單</div>
+    <div style="margin-left:30px; font-size:40px; width:1000px; text-align: center" >折讓單產生器</div>
 
    <!-- PDF 顯示區域 -->
-    <iframe id="iframe123" frameborder="0" width="1000" height="760" style="margin-left:30px" >
+    <iframe id="iframe123" frameborder="0" width="1000" height="760" style="margin-left:10px;margin-bottom:30px; float:left" >
 <!--    <iframe id="iframe123" frameborder="0" width="592" height="870" style="margin-left:30px" >-->
     </iframe>
   
+    <div style="margin-left:10px; float:left">
+      <button style="font-size:20px; background:blue; color:white" onclick="alert('此功能尚未完成')" >更新(尚未完成)</button><br><br>
+      
+      <label>折讓日期:</label>
+      <input type="date" id="折讓日期" style="width:386px"><br><br>
+
+      <label>折讓合計金額:</label>
+      <input type="text" id="折讓合計金額" size="50"><br><br>               
+      <hr>
+      
+      <label>發票聯式1:</label>
+      <select id="發票聯式1" style="width:392px; height:23px">
+        <option value=2>二聯式</option>
+        <option value=3>三聯式</option>
+      </select><br><br>
+      
+      <label>發票日期1:</label>
+      <input type="date" id="發票日期1" style="width:386px"><br><br>
+            
+      <label>發票號碼1:</label>
+      <input type="text" id="發票號碼1" size="50"><br><br>      
+            
+      <label>發票品名1:</label>
+      <input type="text" id="發票品名1" size="50"><br><br> 
+                  
+      <label>發票數量1:</label>
+      <input type="text" id="發票數量1" size="50"><br><br> 
+                  
+      <label>發票單價1:</label>
+      <input type="text" id="發票單價1" size="50"><br><br> 
+                  
+      <label>折讓金額1:</label>
+      <input type="text" id="折讓金額1" size="50"><br><br>   
+                  
+      <label>是否應稅1:</label>
+      <select id="是否應稅1" style="width:392px; height:23px">
+        <option value=1>應稅(5%)</option>
+        <option value=2>零稅率(0%)</option>
+        <option value=3>免稅(0%)</option>        
+      </select><br><br>   
+      <hr>
+      
+      <label>發票聯式2:</label>
+      <select id="發票聯式1" style="width:392px; height:23px">
+        <option value=2>二聯式</option>
+        <option value=3>三聯式</option>
+      </select><br><br>
+      <label>發票日期2:</label>
+      <input type="date" id="發票日期2" style="width:386px"><br><br>
+            
+      <label>發票號碼2:</label>
+      <input type="text" id="發票號碼2" size="50"><br><br>      
+            
+      <label>發票品名2:</label>
+      <input type="text" id="發票品名2" size="50"><br><br> 
+                  
+      <label>發票數量2:</label>
+      <input type="text" id="發票數量2" size="50"><br><br> 
+                  
+      <label>發票單價2:</label>
+      <input type="text" id="發票單價2" size="50"><br><br> 
+                  
+      <label>折讓金額2:</label>
+      <input type="text" id="折讓金額2" size="50"><br><br>   
+                  
+      <label>是否應稅2:</label>
+      <select id="是否應稅2" style="width:392px; height:23px">
+        <option value=1>應稅(5%)</option>
+        <option value=2>零稅率(0%)</option>
+        <option value=3>免稅(0%)</option>        
+      </select><br><br>                                         
+      <hr>
+      
+      <label>發票聯式3:</label>
+      <select id="發票聯式3" style="width:392px; height:23px">
+        <option value=2>二聯式</option>
+        <option value=3>三聯式</option>
+      </select><br><br>
+      <label>發票日期3:</label>
+      <input type="date" id="發票日期3" style="width:386px"><br><br>
+            
+      <label>發票號碼3:</label>
+      <input type="text" id="發票號碼3" size="50"><br><br>      
+            
+      <label>發票品名3:</label>
+      <input type="text" id="發票品名3" size="50"><br><br> 
+                  
+      <label>發票數量3:</label>
+      <input type="text" id="發票數量3" size="50"><br><br> 
+                  
+      <label>發票單價3:</label>
+      <input type="text" id="發票單價3" size="50"><br><br> 
+                  
+      <label>折讓金額3:</label>
+      <input type="text" id="折讓金額3" size="50"><br><br>   
+                  
+      <label>是否應稅3:</label>
+      <select id="是否應稅3" style="width:392px; height:23px">
+        <option value=1>應稅(5%)</option>
+        <option value=2>零稅率(0%)</option>
+        <option value=3>免稅(0%)</option>        
+      </select><br><br>       
+      <hr>
+      
+      <label>發票聯式4:</label>
+      <select id="發票聯式4" style="width:392px; height:23px">
+        <option value=2>二聯式</option>
+        <option value=3>三聯式</option>
+      </select><br><br>
+      <label>發票日期4:</label>
+      <input type="date" id="發票日期4" style="width:386px"><br><br>
+            
+      <label>發票號碼4:</label>
+      <input type="text" id="發票號碼4" size="50"><br><br>      
+            
+      <label>發票品名4:</label>
+      <input type="text" id="發票品名4" size="50"><br><br> 
+                  
+      <label>發票數量4:</label>
+      <input type="text" id="發票數量4" size="50"><br><br> 
+                  
+      <label>發票單價4:</label>
+      <input type="text" id="發票單價4" size="50"><br><br> 
+                  
+      <label>折讓金額4:</label>
+      <input type="text" id="折讓金額4" size="50"><br><br>   
+                  
+      <label>是否應稅4:</label>
+      <select id="是否應稅4" style="width:392px; height:23px">
+        <option value=1>應稅(5%)</option>
+        <option value=2>零稅率(0%)</option>
+        <option value=3>免稅(0%)</option>        
+      </select><br><br>                          
+                                                      
+    </div>
+    
     <!-- V1.3.2 -->
     <!--<script src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>-->
     <!--<script src = "jspdf.debug.1.3.2.js"></script>-->
@@ -35,7 +171,8 @@
     <script src="base64img.js"></script><!--將 img 進行 base64 編碼-->
     <script src="dateConvert.js"></script>
        
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <script src="jquery3.5.1.min.js"></script>
         
     <script>
       function drawPDF(background){
@@ -207,7 +344,13 @@
       }
       
     </script>
-    
+
+    <style>
+      label {
+        width:110px;
+        display: inline-block;
+      }      
+    </style>
 
   </body>
 
