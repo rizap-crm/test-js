@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    <div style="margin-left:30px; font-size:40px; width:592px; text-align: center" >折讓單產生器</div>
+    <div style="margin-left:30px; font-size:40px; width:780px; text-align: center" >折讓單產生器</div>
 
    <!-- PDF 顯示區域 -->
 <!-- landscape   <iframe id="iframe123" frameborder="0" width="900" height="700" style="margin-left:10px;margin-bottom:30px; float:left" >-->
@@ -175,6 +175,7 @@
     <script src="jquery3.5.1.min.js"></script>
         
     <script>
+      var doc;
       function drawPDF(background1,background2,background3,background4){
         const queryString = window.location.search;
         console.log(queryString);
@@ -194,26 +195,47 @@
          floatPrecision: 16 // or "smart", default is 16
         }
 
-        var doc = new jsPDF(opt);
+        doc = new jsPDF(opt);
 
 
-
-
-        // doc.addImage(rebate, 10, 10, 780, 480);
-        //doc.addImage(background, 10, 10, 780, 480);
-        doc.addImage(background1, 10, 30,  770, 474);
-        doc.addImage(background2, 10, 600, 770, 474);
-               
         var startX=0;
         var startY=0;
         var deltaX=0;
         var deltaY=570;
         var itemY1L1=262;
         var itemY1L2=278;        
-        var itemY1L3=294;        
+        var itemY1L3=294; 
 
-        doc.setFont('王漢宗中明體繁');        
+        // doc.addImage(rebate, 10, 10, 780, 480);
+        //doc.addImage(background, 10, 10, 780, 480);
+        doc.addImage(background1, 10, 30,  770, 474, undefined, 'FAST');
+        doc.addImage(background2, 10, 600, 770, 474, undefined, 'FAST');
+               
+       
+
+        doc.setFont('王漢宗中明體繁');       
+        
+        // doc.setPage(1); //start from page #1
+        // doc.setColor(0,0,255); //=> R,G,B
+        // doc.rect(x,y,w,h,'F'); // Fill rect with 
+        // doc.setTextColor(0,0,255); //=> R,G,B
+        // doc.text('aaa', x,y); // text with set text color
+        // update pdf
+        // $("#iframe123").attr("src", doc.output('datauristring'));
+        
+        // 雖然可以用 PNG 圖檔，但透明處會變黑色
+        
+        
+        // 第一聯
+        doc.setFontSize(9); 
+        doc.text('宇康醫電股份',        startX+124, startY+58);    //原銷貨名稱 L1            
+        doc.text('有限公司',           startX+124, startY+70);    //原銷貨名稱 L2            
+            
+        doc.text('350401 苗栗市竹南鎮', startX+124, startY+124);    //原銷貨地址 L1     
+        doc.text('科北五路二號三樓',     startX+124, startY+136);    //原銷貨地址 L2    
+        
         doc.setFontSize(12);
+        doc.text('56662653',       startX+124, startY+100);    //原銷貨統一編號         
         doc.text('110',            startX+390, startY+129);  //年
         doc.text('3',              startX+450, startY+129);  //月
         doc.text('3',              startX+505, startX+129);  //日  
@@ -231,14 +253,17 @@
         doc.text('2,500',         startX+580, startY+itemY1L1);    //營業稅額  
         doc.text('50,000',        startX+500, startY+383);    //合計折讓金額         
         doc.text('2,500',         startX+580, startY+383);    //合計營業稅額          
-        doc.text('康博銓',         startX+130, startY+455);    //原買受人名稱            
-        doc.text('350401 苗栗市竹南鎮科北五路二號三樓', startX+400, startY+428);    //原買受人地址  
-        
-        doc.setFontSize(14);        
-        doc.text('56662635',      startX+130, startY+485);    //原買受人統一編號          
 
-        doc.setFontSize(12);
+        // 第二聯
+        doc.setFontSize(9); 
+        doc.text('宇康醫電股份',        startX+124, startY+deltaY+58);    //原銷貨名稱 L1            
+        doc.text('有限公司',           startX+124, startY+deltaY+70);    //原銷貨名稱 L2            
+        doc.text('350401 苗栗市竹南鎮', startX+124, startY+deltaY+124);    //原銷貨地址 L1     
+        doc.text('科北五路二號三樓',     startX+124, startY+deltaY+136);    //原銷貨地址 L2 
+        
+        doc.setFontSize(12);        
         doc.text('110',            startX+390, startY+deltaY+129);  //年
+        doc.text('56662653',       startX+124, startY+deltaY+100);    //原銷貨統一編號         
         doc.text('3',              startX+450, startY+deltaY+129);    //月
         doc.text('3',              startX+505, startY+deltaY+129);    //日
         
@@ -246,19 +271,17 @@
         doc.text('二',             startX+23, startY+deltaY+itemY1L1);    //聯式      
         doc.text('109.03.01',      startX+47, startY+deltaY+itemY1L1);    //發票日期  
         doc.text('MN-02860182',    startX+122, startY+deltaY+itemY1L1);    //發票號碼          
-        doc.text('標準24堂課程',    startX+240, startY+deltaY+itemY1L1);    //發票號碼 
+        doc.text('標準24堂課程',    startX+240, startY+deltaY+itemY1L1);    //發票號碼
+        doc.text('(推廣價)',       startX+240, startY+deltaY+itemY1L2);    //發票品名 
+        doc.text('中山店限定',      startX+240, startY+deltaY+itemY1L3);    //發票品名         
         doc.text('1',             startX+355, startY+deltaY+itemY1L1);    //數量         
         doc.text('50,000',        startX+386, startY+deltaY+itemY1L1);    //單價         
         doc.text('50,000',        startX+500, startY+deltaY+itemY1L1);    //折讓金額         
         doc.text('2,500',        startX+580, startY+deltaY+itemY1L1);    //營業稅額   
         doc.text('50,000',        startX+500, startY+deltaY+383);    //合計折讓金額         
         doc.text('2,500',         startX+580, startY+deltaY+383);    //合計營業稅額          
-        doc.text('康博銓',         startX+130, startY+deltaY+455);    //原買受人名稱            
-        doc.text('350401 苗栗市竹南鎮科北五路二號三樓', startX+400, startY+deltaY+428);    //原買受人地址  
-        
-        doc.setFontSize(14);        
-        doc.text('56662635',      startX+130, startY+deltaY+485);    //原買受人統一編號
 
+        // 第一聯 和 第二聯 打勾 部分
         doc.setFont('opens');
         doc.setFontSize(14);
         doc.text('✔', startX+640, startY+itemY1L1); //應稅1        
@@ -267,11 +290,21 @@
 
         doc.addPage();
 
-        doc.addImage(background3, 10, 30,  770, 474);
-        doc.addImage(background4, 10, 600, 770, 474);
+        doc.addImage(background3, 10, 30,  770, 474, undefined, 'FAST');
+        doc.addImage(background4, 10, 600, 770, 474, undefined, 'FAST');
         
-        doc.setFont('王漢宗中明體繁');        
+        doc.setFont('王漢宗中明體繁');       
+        
+        // 第三聯
+        doc.setFontSize(9); 
+        doc.text('宇康醫電股份',        startX+124, startY+58);    //原銷貨名稱 L1            
+        doc.text('有限公司',           startX+124, startY+70);    //原銷貨名稱 L2            
+            
+        doc.text('350401 苗栗市竹南鎮', startX+124, startY+124);    //原銷貨地址 L1     
+        doc.text('科北五路二號三樓',     startX+124, startY+136);    //原銷貨地址 L2    
+        
         doc.setFontSize(12);
+        doc.text('56662653',       startX+124, startY+100);    //原銷貨統一編號         
         doc.text('110',            startX+390, startY+129);  //年
         doc.text('3',              startX+450, startY+129);  //月
         doc.text('3',              startX+505, startX+129);  //日  
@@ -280,21 +313,26 @@
         doc.text('二',             startX+23, startY+itemY1L1);    //聯式      
         doc.text('109/03/18',      startX+47, startX+itemY1L1);    //發票日期  
         doc.text('MN-02860182',    startX+122, startY+itemY1L1);    //發票號碼          
-        doc.text('標準24堂課程',    startX+240, startY+itemY1L1);    //發票號碼 
-        doc.text('1',             startX+355, startY+itemY1L1);    //數量         
+        doc.text('標準24堂課程',    startX+240, startY+itemY1L1);    //發票品名 
+        doc.text('(推廣價)',       startX+240, startY+itemY1L2);    //發票品名 
+        doc.text('中山店限定',      startX+240, startY+itemY1L3);    //發票品名 
+        doc.text('1',              startX+355, startY+itemY1L1);    //數量         
         doc.text('50,000',        startX+386, startY+itemY1L1);    //單價         
         doc.text('50,000',        startX+500, startY+itemY1L1);    //折讓金額         
         doc.text('2,500',         startX+580, startY+itemY1L1);    //營業稅額  
         doc.text('50,000',        startX+500, startY+383);    //合計折讓金額         
         doc.text('2,500',         startX+580, startY+383);    //合計營業稅額          
-        doc.text('康博銓',         startX+130, startY+455);    //原買受人名稱            
-        doc.text('350401 苗栗市竹南鎮科北五路二號三樓', startX+400, startY+428);    //原買受人地址  
-        
-        doc.setFontSize(14);        
-        doc.text('56662635',      startX+130, startY+485);    //原買受人統一編號          
 
-        doc.setFontSize(12);
+        // 第四聯
+        doc.setFontSize(9); 
+        doc.text('宇康醫電股份',        startX+124, startY+deltaY+58);    //原銷貨名稱 L1            
+        doc.text('有限公司',           startX+124, startY+deltaY+70);    //原銷貨名稱 L2            
+        doc.text('350401 苗栗市竹南鎮', startX+124, startY+deltaY+124);    //原銷貨地址 L1     
+        doc.text('科北五路二號三樓',     startX+124, startY+deltaY+136);    //原銷貨地址 L2 
+        
+        doc.setFontSize(12);        
         doc.text('110',            startX+390, startY+deltaY+129);  //年
+        doc.text('56662653',       startX+124, startY+deltaY+100);    //原銷貨統一編號         
         doc.text('3',              startX+450, startY+deltaY+129);    //月
         doc.text('3',              startX+505, startY+deltaY+129);    //日
         
@@ -303,18 +341,16 @@
         doc.text('109.03.01',      startX+47, startY+deltaY+itemY1L1);    //發票日期  
         doc.text('MN-02860182',    startX+122, startY+deltaY+itemY1L1);    //發票號碼          
         doc.text('標準24堂課程',    startX+240, startY+deltaY+itemY1L1);    //發票號碼 
+        doc.text('(推廣價)',       startX+240, startY+deltaY+itemY1L2);    //發票品名 
+        doc.text('中山店限定',      startX+240, startY+deltaY+itemY1L3);    //發票品名         
         doc.text('1',             startX+355, startY+deltaY+itemY1L1);    //數量         
         doc.text('50,000',        startX+386, startY+deltaY+itemY1L1);    //單價         
         doc.text('50,000',        startX+500, startY+deltaY+itemY1L1);    //折讓金額         
         doc.text('2,500',        startX+580, startY+deltaY+itemY1L1);    //營業稅額   
         doc.text('50,000',        startX+500, startY+deltaY+383);    //合計折讓金額         
         doc.text('2,500',         startX+580, startY+deltaY+383);    //合計營業稅額          
-        doc.text('康博銓',         startX+130, startY+deltaY+455);    //原買受人名稱            
-        doc.text('350401 苗栗市竹南鎮科北五路二號三樓', startX+400, startY+deltaY+428);    //原買受人地址  
-        
-        doc.setFontSize(14);        
-        doc.text('56662635',      startX+130, startY+deltaY+485);    //原買受人統一編號
 
+        // 第三聯 和 第四聯 打勾 部分
         doc.setFont('opens');
         doc.setFontSize(14);
         doc.text('✔', startX+640, startY+itemY1L1); //應稅1        
