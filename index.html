@@ -7,7 +7,17 @@
   </head>
 
   <body>
-    <div style="margin-left:30px; font-size:25px; width:620px; text-align: center" >折讓單產生器</div>
+<!--
+    <div style="margin-left:30px; font-size:25px; width:1000px; text-align: center" >
+      <span>折讓單產生器</span>
+      <button style="margin-left:30px; font-size:25px; width:100px; text-align: center">更新</button>
+    </div>
+-->
+
+    <div  >
+      <span style="margin-left:250px; font-size:25px">折讓單產生器</span>
+      <button style="margin-left:255px; font-size:20px; width:100px;background-color:royalblue;color:white; border-color: royalblue" onclick="updatePDF()">更新</button>
+    </div>        
 
    <!-- PDF 顯示區域 -->
 <!-- landscape   <iframe id="iframe123" frameborder="0" width="900" height="700" style="margin-left:10px;margin-bottom:30px; float:left" >-->
@@ -70,7 +80,8 @@
       <input type="text" id="發票一單價" style="width:198px;font-size:16px">
        字體大小 
       <input type="text" id="發票一單價size" style="width:20px;font-size:16px">
-      <button style="font-size:16px">+</button> <button style="font-size:16px">-</button>  
+      <button style="font-size:16px" onclick="發票一單價size_change(1)">+</button> 
+      <button style="font-size:16px" onclick="發票一單價size_change(-1)">-</button>  
     
       <br>                                   
       <label style="margin-bottom:7px">發票一折讓金額:</label>
@@ -116,7 +127,8 @@
       <input type="text" id="發票二單價" style="width:198px;font-size:16px">
        字體大小 
       <input type="text" id="發票二單價size" style="width:20px;font-size:16px">
-      <button style="font-size:16px">+</button> <button style="font-size:16px">-</button>  
+      <button style="font-size:16px" onclick="發票二單價size_change(1)">+</button> 
+      <button style="font-size:16px" onclick="發票二單價size_change(-1)">-</button>   
        
       <br>
                   
@@ -223,7 +235,7 @@
       $("#發票一數量").val(p發票一數量);
       
       $("#發票一單價").val(p發票一單價);
-      $("#發票一單價size").val("16");
+      $("#發票一單價size").val("11");
       
       $("#發票一折讓金額").val(p發票一折讓金額);
       $("#發票一折讓營業稅額").val(p發票一折讓營業稅額);
@@ -238,7 +250,7 @@
       $("#發票二數量").val(p發票二數量);
       
       $("#發票二單價").val(p發票二單價);
-      $("#發票二單價size").val("16");
+      $("#發票二單價size").val("11");
       
       $("#發票二折讓金額").val(p發票二折讓金額);
       $("#發票二折讓營業稅額").val(p發票二折讓營業稅額);
@@ -297,11 +309,7 @@
           console.log("Four images are loaded!");
           clearInterval(loadingImg);
           //drawPDF(backgroundStr1,backgroundStr2,backgroundStr3,backgroundStr4);
-          initPDF();
-          drawPagePDF(1);
-          doc.addPage();
-          drawPagePDF(2);          
-          showPDF();
+          updatePDF();
         } 
       }), 50);      
       
@@ -316,6 +324,29 @@
       }   
       
       var doc;
+      
+      function 發票一單價size_change(increment){
+        var fontSize = parseInt($("#發票一單價size").val());       
+        fontSize += increment;
+
+        $("#發票一單價size").val(fontSize);
+      }
+      
+      function 發票二單價size_change(increment){
+        var fontSize = parseInt($("#發票二單價size").val());       
+        fontSize += increment;
+
+        $("#發票二單價size").val(fontSize);
+      }      
+      function updatePDF(){
+        console.log("updating");
+        initPDF();
+        drawPagePDF(1);
+        doc.addPage();
+        drawPagePDF(2);          
+        showPDF();   
+        console.log("done");
+      }
       
       function drawPagePDF(pageNum){
         if (pageNum == 1) {
@@ -368,8 +399,12 @@
         doc.text($("#發票一品名1").val(), pos_X+240, pos_Y+itemY1L1);    //發票品名     
         doc.text($("#發票一品名2").val(), pos_X+240, pos_Y+itemY1L2);    //發票品名 
         doc.text($("#發票一品名3").val(), pos_X+240, pos_Y+itemY1L3);    //發票品名
-        doc.text($("#發票一數量").val(), pos_X+355, pos_Y+itemY1L1);    //數量         
+        doc.text($("#發票一數量").val(), pos_X+355, pos_Y+itemY1L1);    //數量   
+        
+        doc.setFontSize(parseInt($("#發票一單價size").val()));           
         doc.text($("#發票一單價").val(), pos_X+386, pos_Y+itemY1L1);    //發票一單價 
+        doc.setFontSize(11);   
+        
         doc.text($("#發票一折讓金額").val(), pos_X+450, pos_Y+itemY1L1);    //發票一折讓金額 
         doc.text($("#發票一折讓營業稅額").val(), pos_X+565, pos_Y+itemY1L1);    //發票一折讓營業稅額   
         
@@ -383,9 +418,15 @@
         doc.text($("#發票二品名1").val(), pos_X+240, pos_Y+發票間隔+itemY1L1);    //發票品名     
         doc.text($("#發票二品名2").val(), pos_X+240, pos_Y+發票間隔+itemY1L2);    //發票品名 
         doc.text($("#發票二品名3").val(), pos_X+240, pos_Y+發票間隔+itemY1L3);    //發票品名
-        doc.text($("#發票二數量").val(), pos_X+355, pos_Y+發票間隔+itemY1L1);    //數量         
+        doc.text($("#發票二數量").val(), pos_X+355, pos_Y+發票間隔+itemY1L1);    //數量    
+        
+        doc.setFontSize(parseInt($("#發票二單價size").val()));        
         doc.text($("#發票二單價").val(), pos_X+386, pos_Y+發票間隔+itemY1L1);    //發票一單價 
+        doc.setFontSize(11);             
+
         doc.text($("#發票二折讓金額").val(), pos_X+450, pos_Y+發票間隔+itemY1L1);    //發票一折讓金額 
+   
+        
         doc.text($("#發票二折讓營業稅額").val(), pos_X+565, pos_Y+發票間隔+itemY1L1);  //發票一折讓營業稅額        
         
         doc.text($("#折讓合計金額").val(), pos_X+450, pos_Y+383);    //折讓合計金額  
