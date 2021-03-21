@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>折讓單</title>
+  </head>
+
+  <body>
+    <div style="margin-left:30px; font-size:25px; width:620px; text-align: center" >折讓單產生器</div>
+
+   <!-- PDF 顯示區域 -->
+<!-- landscape   <iframe id="iframe123" frameborder="0" width="900" height="700" style="margin-left:10px;margin-bottom:30px; float:left" >-->
+    <iframe id="iframe123" frameborder="0" width="620" height="910" style="margin-left:30px; float:left" >
+    </iframe>
+  
+    <div style="margin-left:10px; float:left">
+      
+      <label>折讓對象名稱第一行:</label>
+      <input type="text" id="折讓對象名稱第一行" style="width:352px"><br>
+           
+      <label>折讓對象名稱第二行:</label>
+      <input type="text" id="折讓對象名稱第二行" style="width:352px"><br>
+                 
+      <label>折讓對象統一編號:</label>
+      <input type="text" id="折讓對象統一編號" style="width:352px"><br>   
+           
+      <label>折讓對象地址第一行:</label>
+      <input type="text" id="折讓對象地址第一行" style="width:352px"><br>                        
+           
+      <label>折讓對象地址第二行:</label>
+      <input type="text" id="折讓對象地址第二行" style="width:352px"><br>    
+                        
+      <label>折讓日期:</label>
+      <input type="date" id="折讓日期" style="width:352px"><br>
+
+      <label>折讓合計金額:</label>
+      <input type="text" id="折讓合計金額" style="width:352px"><br>               
+
+      <label>折讓合計營樣稅額:</label>
+      <input type="text" id="折讓合計營樣稅額" style="width:352px"><br>  
+                 
+      <hr>
+            
+      <label>發票一聯式:</label>
+      <select id="發票一聯式" style="width:358px; height:23px">
+        <option value=2>二聯式</option>
+        <option value=3>三聯式</option>
+      </select><br>
+      
+      <label>發票一日期:</label>
+      <input type="date" id="發票一日期" style="width:352px"><br>
+            
+      <label>發票一號碼:</label>
+      <input type="text" id="發票一號碼" style="width:352px"><br>      
+            
+      <label>發票一品名(1):</label>
+      <input type="text" id="發票一品名1" style="width:352px"><br>
+      <div>
+        品名(1)字體大小 <input type="text" id="發票一品名1size" style="width:20px"><button>+</button> <button>-</button>  <span style="display:inline-block;width:28px"></span>
+        品名(1)位置 <input type="text" id="發票一品名1pos" style="width:20px"><button>+</button> <button>-</button>  
+      </div>    
+       
+
+      <label>發票一品名(2):</label>
+      <input type="text" id="發票一品名2" style="width:352px"><br>
+      <div>
+        品名(2)字體大小 <input type="text" id="發票一品名2size" style="width:20px"><button>+</button> <button>-</button>  <span style="display:inline-block;width:28px"></span>
+        品名(2)位置 <input type="text" id="發票一品名2pos" style="width:20px"><button>+</button> <button>-</button>  
+      </div>    
+       
+                                         
+      <label>發票一品名(3):</label>
+      <input type="text" id="發票一品名3" style="width:352px"><br>
+      <div>
+        品名(3)字體大小 <input type="text" id="發票一品名3size" style="width:20px"><button>+</button> <button>-</button>  
+        <span style="display:inline-block;width:28px"></span>
+        品名(3)位置 <input type="text" id="發票一品名3pos" style="width:20px"><button>+</button> <button>-</button>  
+      </div>    
+                                                                                         
+                                          
+      <label>發票一數量:</label>
+      <input type="text" id="發票一數量" style="width:352px"><br> 
+                  
+      <label>發票一單價:</label>
+      <input type="text" id="發票一單價" style="width:352px"><br>
+      <div>
+        單價(1)字體大小 <input type="text" id="發票一單價size" style="width:20px"><button>+</button> <button>-</button>  
+        <span style="display:inline-block;width:28px"></span>
+        單價(1)位置 <input type="text" id="發票一單價pos" style="width:20px"><button>+</button> <button>-</button>  
+      </div>    
+                        
+                  
+      <label>發票一折讓金額:</label>
+      <input type="text" id="發票一折讓金額" style="width:352px"><br>   
+                  
+      <label>發票一是否應稅:</label>
+      <select id="發票一是否應稅" style="width:358px; height:23px">
+        <option value=1>應稅(5%)</option>
+        <option value=2>零稅率(0%)</option>
+        <option value=3>免稅(0%)</option>        
+      </select><br>  
+       
+      <hr>
+
+      <label>發票二聯式:</label>
+      <select id="發票二聯式" style="width:358px; height:23px">
+        <option value=2>二聯式</option>
+        <option value=3>三聯式</option>
+      </select><br>
+           
+      <label>發票二日期:</label>
+      <input type="date" id="發票二日期" style="width:352px"><br>
+            
+      <label>發票二號碼:</label>
+      <input type="text" id="發票二號碼" style="width:352px"><br>      
+            
+      <label>發票二品名(1):</label>
+      <input type="text" id="發票二品名1" style="width:352px"><br>
+        <div>
+          品名(1)字體大小 <input type="text" id="發票二品名1size" style="width:20px"><button>+</button> <button>-</button>  
+          <span style="display:inline-block;width:28px"></span>
+          品名(1)位置 <input type="text" id="發票二品名1pos" style="width:20px"><button>+</button> <button>-</button>  
+        </div>       
+       
+
+      <label>發票二品名(2):</label>
+      <input type="text" id="發票二品名2" style="width:352px"><br>
+        <div>
+          品名(2)字體大小 <input type="text" id="發票二品名2size" style="width:20px"><button>+</button> <button>-</button> <span style="display:inline-block;width:28px"></span>
+          品名(2)位置 <input type="text" id="發票二品名2pos" style="width:20px"><button>+</button> <button>-</button>  
+        </div>       
+       
+                                         
+      <label>發票二品名(3):</label>
+      <input type="text" id="發票二品名3" style="width:352px"><br>
+        <div>
+          品名(3)字體大小 <input type="text" id="發票二品名3size" style="width:20px"><button>+</button> <button>-</button>  
+          <span style="display:inline-block;width:28px"></span>
+          品名(3)位置 <input type="text" id="發票二品名3pos" style="width:20px"><button>+</button> <button>-</button>  
+        </div>       
+                                                
+                                          
+      <label>發票二數量:</label>
+      <input type="text" id="發票二數量" style="width:352px"><br>
+                  
+      <label>發票二單價:</label>
+      <input type="text" id="發票二單價" style="width:352px"><br>
+        <div>
+          單價(2)字體大小 <input type="text" id="發票二單價size" style="width:20px"><button>+</button> <button>-</button>  
+          <span style="display:inline-block;width:28px"></span>
+          單價(2)位置 <input type="text" id="發票二單價pos" style="width:20px"><button>+</button> <button>-</button>  
+        </div>       
+       
+                  
+      <label>發票二折讓金額:</label>
+      <input type="text" id="折讓二金額" style="width:352px"><br>   
+                  
+      <label>發票二是否應稅:</label>
+      <select id="發票二是否應稅" style="width:358px; height:23px">
+        <option value=1>應稅(5%)</option>
+        <option value=2>零稅率(0%)</option>
+        <option value=3>免稅(0%)</option>        
+      </select><br><br>         
+                         
+                                                      
+    </div>
+    
+    <!-- V1.3.2 -->
+    <!--<script src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>-->
+    <!--<script src = "jspdf.debug.1.3.2.js"></script>-->
+    
+    <!-- V2.3.0 -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.0/jspdf.umd.min.js"></script>-->    
+    <script src = "jspdf.umd.2.3.0.js"></script>
+        
+    
+    <!--以下自 https://rawgit.com/MrRio/jsPDF/master/fontconverter/fontconverter.html 轉換 TTF 字型檔-->
+    <!--免費中文字型下載 https://www.fairyhorn.cc/1526/chinese-fonts-free-download -->
+    <script src = "王漢宗中明體繁-normal.js"></script>
+    <script src = "王漢宗特黑體繁-normal.js"></script>
+    <script src = "opens-normal.js"></script><!--打勾的符號字型-->
+
+    <!--rebate is a Base64 encoded string of rebate-using-王漢宗中明體繁.jpg by https://www.base64-image.de-->
+<!--    <script src="rebate-base64.js"></script>-->
+    
+    <script src="base64img.js"></script><!--將 img 進行 base64 編碼-->
+    <script src="dateConvert.js"></script>
+       
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <script src="jquery3.5.1.min.js"></script>
+    <script src="testStr.js"></script>       
+        
+    <script>
+      
+      const queryString = window.location.search;
+      console.log(queryString);
+      const urlParams = new URLSearchParams(queryString);
+      console.log(urlParams);
+      const rebate_date = urlParams.get('rebate_date');
+      const rebate_total_amount = urlParams.get('rebate_total_amount');      
+      const rebate_total_tax = urlParams.get('rebate_total_tax');      
+   
+      
+      var img1 = new Image();
+      img1.src = "rebate-using-王漢宗中明體繁1.jpg";      
+      var img2 = new Image();
+      img2.src = "rebate-using-王漢宗中明體繁2.jpg";  
+      var img3 = new Image();
+      img3.src = "rebate-using-王漢宗中明體繁3.jpg";  
+      var img4 = new Image();
+      img4.src = "rebate-using-王漢宗中明體繁4.jpg";  
+            
+      var img1Loaded = false;
+      var backgroundStr1;
+      img1.onload = function () {
+        backgroundStr1=imgToBase64(img1);
+        img1Loaded = true;
+      }
+      var img2Loaded = false;
+      var backgroundStr2;
+      img2.onload = function () {
+        backgroundStr2=imgToBase64(img2);
+        img2Loaded = true;
+      }
+      var img3Loaded = false;
+      var backgroundStr3;
+      img3.onload = function () {
+        backgroundStr3=imgToBase64(img3);
+        img3Loaded = true;
+      }
+      var img4Loaded = false;
+      var backgroundStr4;
+      img4.onload = function () {
+        backgroundStr4=imgToBase64(img4);
+        img4Loaded = true;
+      }      
+          
+      var loadingImg = setInterval((()=>{ 
+        console.log("Images are loading ...");
+        if ( img1Loaded && img2Loaded && img3Loaded && img4Loaded ) {
+          console.log("Four images are loaded!");
+          clearInterval(loadingImg);
+          drawPDF(backgroundStr1,backgroundStr2,backgroundStr3,backgroundStr4);
+        } 
+      }), 50);      
+      
+      window.jsPDF = window.jspdf.jsPDF; // add this line of code    
+      var opt = {
+       orientation: 'p',
+       hotfixes: ["px_scaling"],
+       unit: 'px',
+       format: 'a4',
+       putOnlyUsedFonts:true,
+       floatPrecision: 16 // or "smart", default is 16
+      }   
+      
+      var doc;
+      
+      var startX=0;
+      var startY=0;
+      var deltaX=0;
+      var deltaY=570;
+      var itemY1L1=262;
+      var itemY1L2=278;        
+      var itemY1L3=294;       
+      
+      // doc.setPage(1); //start from page #1
+      // doc.setFillColor(0,0,255); //=> R,G,B
+      // doc.rect(x,y,w,h,'F'); // Fill rect with 
+      // doc.setTextColor(0,0,255); //=> R,G,B
+      // doc.text('aaa', x,y); // text with set text color
+      // update pdf
+      // $("#iframe123").attr("src", doc.output('datauristring'));
+
+      // 雖然可以用 PNG 圖檔，但透明處會變黑色
+      
+      // test data
+      $("#折讓對象名稱第一行").val("宇康醫電股份有限公司");
+      $("#折讓對象統一編號").val("56662653");
+      $("#折讓對象地址第一行").val("350401 苗栗縣竹南鎮科北五路二號三樓");
+      $("#折讓日期").val("2021-03-19");
+      $("#折讓合計金額").val("50,000");
+      $("#折讓合計營樣稅額").val("2,500");
+      
+      $("#發票一聯式").val(2);
+      $("#發票一日期").val("2021-03-01");
+      $("#發票一號碼").val("MN-02860182");
+      $("#發票一品名1").val("標準24堂課程");
+      $("#發票一品名2").val("(推廣價)");
+      $("#發票一品名3").val("中山店限定");
+      
+      
+      function drawPDF(background1,background2,background3,background4){
+        doc = new jsPDF(opt);
+        doc.setFont('王漢宗中明體繁');
+        
+        // doc.addImage(rebate, 10, 10, 780, 480);
+        //doc.addImage(testStr, 10, 10, 180, 180);
+        doc.addImage(background1, 10, 30,  770, 474, undefined, 'FAST');
+        doc.addImage(background2, 10, 600, 770, 474, undefined, 'FAST');
+     
+        
+        // 第一聯
+        doc.setFontSize(9); 
+        doc.text('宇康醫電股份',        startX+124, startY+58);    //原銷貨名稱 L1            
+        doc.text('有限公司',           startX+124, startY+70);    //原銷貨名稱 L2            
+            
+        doc.text('350401 苗栗縣竹南鎮', startX+124, startY+124);    //原銷貨地址 L1     
+        doc.text('科北五路二號三樓',     startX+124, startY+136);    //原銷貨地址 L2    
+        
+        doc.setFontSize(12);
+        doc.text('56662653',       startX+124, startY+100);    //原銷貨統一編號         
+        doc.text('110',            startX+390, startY+129);  //年
+        doc.text('3',              startX+450, startY+129);  //月
+        doc.text('3',              startX+505, startX+129);  //日  
+        
+        doc.setFontSize(11);
+        doc.text('二',             startX+23, startY+itemY1L1);    //聯式      
+        doc.text('109/03/18',      startX+47, startX+itemY1L1);    //發票日期  
+        doc.text('MN-02860182',    startX+122, startY+itemY1L1);    //發票號碼          
+        doc.text('標準24堂課程',    startX+240, startY+itemY1L1);    //發票品名 
+        doc.text('(推廣價)',       startX+240, startY+itemY1L2);    //發票品名 
+        doc.text('中山店限定',      startX+240, startY+itemY1L3);    //發票品名 
+        doc.text('1',              startX+355, startY+itemY1L1);    //數量         
+        doc.text('50,000',        startX+386, startY+itemY1L1);    //單價         
+        doc.text('50,000',        startX+450, startY+itemY1L1);    //折讓金額         
+        doc.text('2,500',         startX+565, startY+itemY1L1);    //營業稅額  
+        doc.text('50,000',        startX+450, startY+383);    //合計折讓金額         
+        doc.text('2,500',         startX+565, startY+383);    //合計營業稅額          
+
+        // 第二聯
+        doc.setFontSize(9); 
+        doc.text('宇康醫電股份',        startX+124, startY+deltaY+58);    //原銷貨名稱 L1            
+        doc.text('有限公司',           startX+124, startY+deltaY+70);    //原銷貨名稱 L2            
+        doc.text('350401 苗栗縣竹南鎮', startX+124, startY+deltaY+124);    //原銷貨地址 L1     
+        doc.text('科北五路二號三樓',     startX+124, startY+deltaY+136);    //原銷貨地址 L2 
+        
+        doc.setFontSize(12);        
+        doc.text('110',            startX+390, startY+deltaY+129);  //年
+        doc.text('56662653',       startX+124, startY+deltaY+100);    //原銷貨統一編號         
+        doc.text('3',              startX+450, startY+deltaY+129);    //月
+        doc.text('3',              startX+505, startY+deltaY+129);    //日
+        
+        doc.setFontSize(11);        
+        doc.text('二',             startX+23, startY+deltaY+itemY1L1);    //聯式      
+        doc.text('109.03.01',      startX+47, startY+deltaY+itemY1L1);    //發票日期  
+        doc.text('MN-02860182',    startX+122, startY+deltaY+itemY1L1);    //發票號碼          
+        doc.text('標準24堂課程',    startX+240, startY+deltaY+itemY1L1);    //發票號碼
+        doc.text('(推廣價)',       startX+240, startY+deltaY+itemY1L2);    //發票品名 
+        doc.text('中山店限定',      startX+240, startY+deltaY+itemY1L3);    //發票品名         
+        doc.text('1',             startX+355, startY+deltaY+itemY1L1);    //數量         
+        doc.text('50,000',        startX+386, startY+deltaY+itemY1L1);    //單價         
+        doc.text('50,000',        startX+450, startY+deltaY+itemY1L1);    //折讓金額         
+        doc.text('2,500',        startX+565, startY+deltaY+itemY1L1);    //營業稅額   
+        doc.text('50,000',        startX+450, startY+deltaY+383);    //合計折讓金額         
+        doc.text('2,500',         startX+565, startY+deltaY+383);    //合計營業稅額          
+
+        // 第一聯 和 第二聯 打勾 部分
+        doc.setFont('opens');
+        doc.setFontSize(14);
+        doc.text('✔', startX+640, startY+itemY1L1); //應稅1        
+        doc.text('✔', startX+640, startY+deltaY+itemY1L1); //應稅2 
+                  
+
+        doc.addPage();
+
+        doc.addImage(background3, 10, 30,  770, 474, undefined, 'FAST');
+        doc.addImage(background4, 10, 600, 770, 474, undefined, 'FAST');
+        
+        doc.setFont('王漢宗中明體繁');       
+        
+        // 第三聯
+        doc.setFontSize(9); 
+        doc.text('宇康醫電股份',        startX+124, startY+58);    //原銷貨名稱 L1            
+        doc.text('有限公司',           startX+124, startY+70);    //原銷貨名稱 L2            
+            
+        doc.text('350401 苗栗縣竹南鎮', startX+124, startY+124);    //原銷貨地址 L1     
+        doc.text('科北五路二號三樓',     startX+124, startY+136);    //原銷貨地址 L2    
+        
+        doc.setFontSize(12);
+        doc.text('56662653',       startX+124, startY+100);    //原銷貨統一編號         
+        doc.text('110',            startX+390, startY+129);  //年
+        doc.text('3',              startX+450, startY+129);  //月
+        doc.text('3',              startX+505, startX+129);  //日  
+        
+        doc.setFontSize(11);
+        doc.text('二',             startX+23, startY+itemY1L1);    //聯式      
+        doc.text('109/03/18',      startX+47, startX+itemY1L1);    //發票日期  
+        doc.text('MN-02860182',    startX+122, startY+itemY1L1);    //發票號碼          
+        doc.text('標準24堂課程',    startX+240, startY+itemY1L1);    //發票品名 
+        doc.text('(推廣價)',       startX+240, startY+itemY1L2);    //發票品名 
+        doc.text('中山店限定',      startX+240, startY+itemY1L3);    //發票品名 
+        doc.text('1',              startX+355, startY+itemY1L1);    //數量         
+        doc.text('50,000',        startX+386, startY+itemY1L1);    //單價         
+        doc.text('50,000',        startX+500, startY+itemY1L1);    //折讓金額         
+        doc.text('2,500',         startX+580, startY+itemY1L1);    //營業稅額  
+        doc.text('50,000',        startX+500, startY+383);    //合計折讓金額         
+        doc.text('2,500',         startX+580, startY+383);    //合計營業稅額          
+
+        // 第四聯
+        doc.setFontSize(9); 
+        doc.text('宇康醫電股份',        startX+124, startY+deltaY+58);    //原銷貨名稱 L1            
+        doc.text('有限公司',           startX+124, startY+deltaY+70);    //原銷貨名稱 L2            
+        doc.text('350401 苗栗縣竹南鎮', startX+124, startY+deltaY+124);    //原銷貨地址 L1     
+        doc.text('科北五路二號三樓',     startX+124, startY+deltaY+136);    //原銷貨地址 L2 
+        
+        doc.setFontSize(12);        
+        doc.text('110',            startX+390, startY+deltaY+129);  //年
+        doc.text('56662653',       startX+124, startY+deltaY+100);    //原銷貨統一編號         
+        doc.text('3',              startX+450, startY+deltaY+129);    //月
+        doc.text('3',              startX+505, startY+deltaY+129);    //日
+        
+        doc.setFontSize(11);        
+        doc.text('二',             startX+23, startY+deltaY+itemY1L1);    //聯式      
+        doc.text('109.03.01',      startX+47, startY+deltaY+itemY1L1);    //發票日期  
+        doc.text('MN-02860182',    startX+122, startY+deltaY+itemY1L1);    //發票號碼          
+        doc.text('標準24堂課程',    startX+240, startY+deltaY+itemY1L1);    //發票號碼 
+        doc.text('(推廣價)',       startX+240, startY+deltaY+itemY1L2);    //發票品名 
+        doc.text('中山店限定',      startX+240, startY+deltaY+itemY1L3);    //發票品名         
+        doc.text('1',             startX+355, startY+deltaY+itemY1L1);    //數量         
+        doc.text('50,000',        startX+386, startY+deltaY+itemY1L1);    //單價         
+        doc.text('50,000',        startX+500, startY+deltaY+itemY1L1);    //折讓金額         
+        doc.text('2,500',        startX+580, startY+deltaY+itemY1L1);    //營業稅額   
+        doc.text('50,000',        startX+500, startY+deltaY+383);    //合計折讓金額         
+        doc.text('2,500',         startX+580, startY+deltaY+383);    //合計營業稅額          
+
+        // 第三聯 和 第四聯 打勾 部分
+        doc.setFont('opens');
+        doc.setFontSize(14);
+        doc.text('✔', startX+640, startY+itemY1L1); //應稅1        
+        doc.text('✔', startX+640, startY+deltaY+itemY1L1); //應稅2         
+        
+        //doc.save("test.pdf");
+        //document.getElementById("iframe123").src = doc.output('datauristring');//在iframe中顯示
+        $("#iframe123").attr("src", doc.output('datauristring'));
+      }
+      
+  
+//      var img = new Image();
+//      img.src = "rebate-using-王漢宗中明體繁.jpg";
+
+      
+//      img.addEventListener("load", function() {
+//
+//        var backgroundStr=imgToBase64(img);
+//        
+//        drawPDF(backgroundStr);        
+//        
+//      }, false);
+      
+
+                                         
+                                        
+      
+    </script>
+
+    <style>
+      label {
+        width:150px;
+        display: inline-block;
+      }      
+    </style>
+
+  </body>
+
+</html>
