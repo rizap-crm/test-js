@@ -163,12 +163,88 @@
     <script>
       
       const queryString = window.location.search;
-      console.log(queryString);
+      //console.log(queryString);
       const urlParams = new URLSearchParams(queryString);
-      console.log(urlParams);
-      const rebate_date = urlParams.get('rebate_date');
-      const rebate_total_amount = urlParams.get('rebate_total_amount');      
-      const rebate_total_tax = urlParams.get('rebate_total_tax');      
+      //console.log(urlParams);
+      
+      const today = new Date();
+      const p折讓對象名稱1 = urlParams.get('折讓對象名稱第一行');
+      const p折讓對象名稱2 = urlParams.get('折讓對象名稱第二行');      
+      const p折讓對象統一編號 = urlParams.get('折讓對象統一編號');      
+      const p折讓對象地址1 = urlParams.get('折讓對象地址第一行');      
+      const p折讓對象地址2 = urlParams.get('折讓對象地址第二行');           
+      const p折讓日期 = urlParams.get('折讓日期');
+      const p折讓合計金額 = urlParams.get('折讓合計金額');     
+      const p折讓合計營樣稅額 = urlParams.get('折讓合計營樣稅額');  
+      
+      const p發票一聯式 = urlParams.get('發票一聯式');
+      const p發票一日期 = urlParams.get('發票一日期');  
+      const p發票一號碼 = urlParams.get('發票一號碼');  
+      const p發票一品名1 = urlParams.get('發票一品名1');  
+      const p發票一品名2 = urlParams.get('發票一品名2');  
+      const p發票一品名3 = urlParams.get('發票一品名3');  
+      const p發票一數量 = urlParams.get('發票一數量');  
+      const p發票一單價 = urlParams.get('發票一單價');  
+      const p發票一折讓金額 = urlParams.get('發票一折讓金額');  
+      const p發票一折讓營業稅額 = urlParams.get('發票一折讓營業稅額');  
+      const p發票一是否應稅 = urlParams.get('發票一是否應稅');   
+      
+      const p發票二聯式 = urlParams.get('發票二聯式');
+      const p發票二日期 = urlParams.get('發票二日期');  
+      const p發票二號碼 = urlParams.get('發票二號碼');  
+      const p發票二品名1 = urlParams.get('發票二品名1');  
+      const p發票二品名2 = urlParams.get('發票二品名2');  
+      const p發票二品名3 = urlParams.get('發票二品名3');  
+      const p發票二數量 = urlParams.get('發票二數量');  
+      const p發票二單價 = urlParams.get('發票二單價');  
+      const p發票二折讓金額 = urlParams.get('發票二折讓金額');  
+      const p發票二折讓營業稅額 = urlParams.get('發票二折讓營業稅額');  
+      const p發票二是否應稅 = urlParams.get('發票二是否應稅');      
+      
+      //?折讓對象名稱第一行=宇康醫電&折讓對象名稱第二行=有限公司&折讓對象統一編號=5666265&折讓對象地址第一行=350401 苗栗縣竹南鎮&折讓對象地址第二行=科北五路二號三樓&折讓日期=2021-03-20&折讓合計金額=55,000&折讓合計營樣稅額=2,500&發票一聯式=二&發票一日期=2021-03-02&發票一號碼=MN-02860182&發票一品名1=標準24堂課程&發票一品名2=推廣價&發票一品名3=中山店限定&發票一數量=1&發票一單價=50,000&發票一折讓金額=50,000&發票一折讓營業稅額=2,500&發票一是否應稅=1&發票二聯式=三&發票二日期=2021-03-06&發票二號碼=KN-12345678&發票二品名1=奶昔&發票二品名2=巧克力口味&發票二品名3=信義店限定&發票二數量=10&發票二單價=500&發票二折讓金額=5,000&發票二折讓營業稅額=0&發票二是否應稅=2
+      
+      
+      // init data
+      $("#折讓對象名稱第一行").val(p折讓對象名稱1);
+      $("#折讓對象名稱第二行").val(p折讓對象名稱2);
+      $("#折讓對象統一編號").val(p折讓對象統一編號);
+      $("#折讓對象地址第一行").val(p折讓對象地址1);
+      $("#折讓對象地址第二行").val(p折讓對象地址2);
+      $("#折讓日期").val(p折讓日期);
+      $("#折讓合計金額").val(p折讓合計金額);
+      $("#折讓合計營樣稅額").val(p折讓合計營樣稅額);
+      
+      $("#發票一聯式").val(p發票一聯式);
+      $("#發票一日期").val(p發票一日期);
+      $("#發票一號碼").val(p發票一號碼); //"MN-02860182"
+      $("#發票一品名1").val(p發票一品名1);
+      $("#發票一品名2").val(p發票一品名2);
+      $("#發票一品名3").val(p發票一品名3);
+      $("#發票一數量").val(p發票一數量);
+      
+      $("#發票一單價").val(p發票一單價);
+      $("#發票一單價size").val("16");
+      
+      $("#發票一折讓金額").val(p發票一折讓金額);
+      $("#發票一折讓營業稅額").val(p發票一折讓營業稅額);
+      $("#發票一是否應稅").val(p發票一是否應稅);
+      
+      $("#發票二聯式").val(p發票二聯式);
+      $("#發票二日期").val(p發票二日期);
+      $("#發票二號碼").val(p發票二號碼); //"MN-02860182"
+      $("#發票二品名1").val(p發票二品名1);
+      $("#發票二品名2").val(p發票二品名2);
+      $("#發票二品名3").val(p發票二品名3);
+      $("#發票二數量").val(p發票二數量);
+      
+      $("#發票二單價").val(p發票二單價);
+      $("#發票二單價size").val("16");
+      
+      $("#發票二折讓金額").val(p發票二折讓金額);
+      $("#發票二折讓營業稅額").val(p發票二折讓營業稅額);
+      $("#發票二是否應稅").val(p發票二是否應稅);         
+    
+      // end of init data
        
       var startX=0;
       var startY=0;
@@ -188,41 +264,7 @@
 
       // 雖然可以用 PNG 圖檔，但透明處會變黑色
       
-      // test data
-      $("#折讓對象名稱第一行").val("宇康醫電股份有限公司");
-      $("#折讓對象統一編號").val("56662653");
-      $("#折讓對象地址第一行").val("350401 苗栗縣竹南鎮科北五路二號三樓");
-      $("#折讓日期").val("2021-03-19");
-      $("#折讓合計金額").val("50,000");
-      $("#折讓合計營樣稅額").val("2,500");
-      
-      $("#發票一聯式").val("二");
-      $("#發票一日期").val("2021-03-01");
-      $("#發票一號碼").val("MN-02860182");
-      $("#發票一品名1").val("標準24堂課程");
-      $("#發票一品名2").val("(推廣價)");
-      $("#發票一品名3").val("中山店限定");
-      $("#發票一數量").val("1");
-      $("#發票一單價").val("50,000");
-      $("#發票一單價size").val("16");
-      $("#發票一折讓金額").val("50,000");
-      $("#發票一折讓營業稅額").val("2,500");
-      $("#發票一是否應稅").val(1);
-      
-      
-      $("#發票二聯式").val("三");
-      $("#發票二日期").val("2021-03-02");
-      $("#發票二號碼").val("MN-02860183");
-      $("#發票二品名1").val("巧克力奶昔");
-      $("#發票二品名2").val("(推廣價)");
-      $("#發票二品名3").val("中山店限定");
-      $("#發票二數量").val("2");
-      $("#發票二單價").val("500");
-      $("#發票二單價size").val("16");
-      $("#發票二折讓金額").val("1,000");
-      $("#發票二折讓營業稅額").val("0");
-      $("#發票二是否應稅").val(2);      
-      
+     
       var img1 = new Image(); img1.src = "rebate-using-王漢宗中明體繁1.jpg";      
       var img2 = new Image(); img2.src = "rebate-using-王漢宗中明體繁2.jpg";  
       var img3 = new Image(); img3.src = "rebate-using-王漢宗中明體繁3.jpg";  
@@ -254,7 +296,12 @@
         if ( img1Loaded && img2Loaded && img3Loaded && img4Loaded ) {
           console.log("Four images are loaded!");
           clearInterval(loadingImg);
-          drawPDF(backgroundStr1,backgroundStr2,backgroundStr3,backgroundStr4);
+          //drawPDF(backgroundStr1,backgroundStr2,backgroundStr3,backgroundStr4);
+          initPDF();
+          drawPagePDF(1);
+          doc.addPage();
+          drawPagePDF(2);          
+          showPDF();
         } 
       }), 50);      
       
@@ -268,7 +315,109 @@
        floatPrecision: 16 // or "smart", default is 16
       }   
       
-      var doc;      
+      var doc;
+      
+      function drawPagePDF(pageNum){
+        if (pageNum == 1) {
+          doc.addImage(backgroundStr1, 10, 30,  770, 474, undefined, 'FAST');
+          doc.addImage(backgroundStr2, 10, 600, 770, 474, undefined, 'FAST');
+        } else {
+          doc.addImage(backgroundStr3, 10, 30,  770, 474, undefined, 'FAST');
+          doc.addImage(backgroundStr4, 10, 600, 770, 474, undefined, 'FAST');          
+        }
+        
+        drawCopy(1);
+        drawCopy(2);       
+      }
+      
+      function drawCopy(copyNum){
+        
+        var pos_X = startX;
+        var pos_Y = startY;
+        var 發票間隔 = 60;
+        
+        if (copyNum==2 || copyNum==4) pos_Y += deltaY; 
+        
+        doc.setFont('王漢宗中明體繁');           
+        doc.setFontSize(9); 
+        doc.text($("#折讓對象名稱第一行").val(), pos_X+124, pos_Y+58);                   
+        doc.text($("#折讓對象名稱第二行").val(), pos_X+124, pos_Y+70); 
+        doc.text($("#折讓對象地址第一行").val(), pos_X+124, pos_Y+124); 
+        doc.text($("#折讓對象地址第二行").val(), pos_X+124, pos_Y+136);
+        
+        doc.setFontSize(12);
+        doc.text($("#折讓對象統一編號").val(), pos_X+124, pos_Y+100);  
+        
+        var dateStr = $("#折讓日期").val();
+        var dateArr=dateStr.split('-');
+        var dateROOC = dateArr[0]-"1911";
+        if ($("#折讓日期").val()!="") {
+          doc.text(dateROOC.toString(), pos_X+390, pos_Y+129);  //年
+          doc.text(dateArr[1], pos_X+450, pos_Y+129);  //月
+          doc.text(dateArr[2], pos_X+505, pos_Y+129);  //日  
+        }
+        
+        doc.setFontSize(11);
+        dateStr = $("#發票一日期").val();
+        dateArr=dateStr.split('-');
+        dateROOC = dateArr[0]-"1911";
+        var formatStr=dateROOC.toString()+"/"+dateArr[1]+"/"+dateArr[2];        
+        if ($("#發票一聯式").val()!=null) doc.text($("#發票一聯式").val(), pos_X+23, pos_Y+itemY1L1);    //聯式          
+        if ($("#發票一日期").val()!="") doc.text(formatStr, pos_X+47, pos_Y+itemY1L1);                //發票日期        
+        doc.text($("#發票一號碼").val(), pos_X+122, pos_Y+itemY1L1);    //發票號碼          
+        doc.text($("#發票一品名1").val(), pos_X+240, pos_Y+itemY1L1);    //發票品名     
+        doc.text($("#發票一品名2").val(), pos_X+240, pos_Y+itemY1L2);    //發票品名 
+        doc.text($("#發票一品名3").val(), pos_X+240, pos_Y+itemY1L3);    //發票品名
+        doc.text($("#發票一數量").val(), pos_X+355, pos_Y+itemY1L1);    //數量         
+        doc.text($("#發票一單價").val(), pos_X+386, pos_Y+itemY1L1);    //發票一單價 
+        doc.text($("#發票一折讓金額").val(), pos_X+450, pos_Y+itemY1L1);    //發票一折讓金額 
+        doc.text($("#發票一折讓營業稅額").val(), pos_X+565, pos_Y+itemY1L1);    //發票一折讓營業稅額   
+        
+        dateStr = $("#發票二日期").val();
+        dateArr=dateStr.split('-');
+        dateROOC = dateArr[0]-"1911";
+        var formatStr=dateROOC.toString()+"/"+dateArr[1]+"/"+dateArr[2];        
+        if ($("#發票二聯式").val()!=null) doc.text($("#發票二聯式").val(), pos_X+23, pos_Y+發票間隔+itemY1L1);  //聯式         
+        if ($("#發票二日期").val()!="") doc.text(formatStr, pos_X+47, pos_Y+發票間隔+itemY1L1);                //發票日期
+        doc.text($("#發票二號碼").val(), pos_X+122, pos_Y+發票間隔+itemY1L1);    //發票號碼          
+        doc.text($("#發票二品名1").val(), pos_X+240, pos_Y+發票間隔+itemY1L1);    //發票品名     
+        doc.text($("#發票二品名2").val(), pos_X+240, pos_Y+發票間隔+itemY1L2);    //發票品名 
+        doc.text($("#發票二品名3").val(), pos_X+240, pos_Y+發票間隔+itemY1L3);    //發票品名
+        doc.text($("#發票二數量").val(), pos_X+355, pos_Y+發票間隔+itemY1L1);    //數量         
+        doc.text($("#發票二單價").val(), pos_X+386, pos_Y+發票間隔+itemY1L1);    //發票一單價 
+        doc.text($("#發票二折讓金額").val(), pos_X+450, pos_Y+發票間隔+itemY1L1);    //發票一折讓金額 
+        doc.text($("#發票二折讓營業稅額").val(), pos_X+565, pos_Y+發票間隔+itemY1L1);  //發票一折讓營業稅額        
+        
+        doc.text($("#折讓合計金額").val(), pos_X+450, pos_Y+383);    //折讓合計金額  
+        doc.text($("#折讓合計營樣稅額").val(), pos_X+565, pos_Y+383);    //折讓合計營樣稅額                        
+        doc.setFont('opens');
+        doc.setFontSize(14);
+        
+        switch($("#發票一是否應稅").val()){
+          case "1": pos_X =  0; break;
+          case "2": pos_X = 40; break;
+          case "3": pos_X = 80; break;
+          default:  pos_X =-10; 
+        }
+        if (pos_X >-1) doc.text('✔', pos_X+640, pos_Y+itemY1L1); //應稅1 
+
+        switch($("#發票二是否應稅").val()){
+          case "1": pos_X =  0; break;
+          case "2": pos_X = 40; break;
+          case "3": pos_X = 80; break;
+          default:  pos_X =-10; 
+        }
+        if (pos_X >-1) doc.text('✔', pos_X+640, pos_Y+發票間隔+itemY1L1); //應稅1         
+      }
+      
+      function initPDF() {
+        doc = new jsPDF(opt);
+        doc.setFont('王漢宗中明體繁');        
+      }
+      
+      function showPDF() {
+        $("#iframe123").attr("src", doc.output('datauristring'));
+      }
       
       function drawPDF(background1,background2,background3,background4){
         doc = new jsPDF(opt);
@@ -317,11 +466,15 @@
         doc.text(formatStr, startX+47, startX+itemY1L1);    //發票日期  
         doc.text(formatStr, startX+47, startX+deltaY+itemY1L1);    //發票日期  
         
+        doc.text($("#發票一號碼").val(), startX+122, startY+itemY1L1);    //發票號碼          
+        doc.text($("#發票一號碼").val(), startX+122, startY+deltaY+itemY1L1);    //發票號碼   
+  
+        doc.text($("#發票一品名1").val(), startX+240, startY+itemY1L1);    //發票品名 
+        doc.text($("#發票一品名1").val(), startX+240, startY+deltaY+itemY1L1);    //發票品名 
         
+        doc.text($("#發票一品名2").val(),       startX+240, startY+itemY1L2);    //發票品名 
+        doc.text($("#發票一品名2").val(),       startX+240, startY+deltaY+itemY1L2);    //發票品名 
         
-        doc.text('MN-02860182',    startX+122, startY+itemY1L1);    //發票號碼          
-        doc.text('標準24堂課程',    startX+240, startY+itemY1L1);    //發票品名 
-        doc.text('(推廣價)',       startX+240, startY+itemY1L2);    //發票品名 
         doc.text('中山店限定',      startX+240, startY+itemY1L3);    //發票品名 
         doc.text('1',              startX+355, startY+itemY1L1);    //數量         
         doc.text('50,000',        startX+386, startY+itemY1L1);    //單價         
