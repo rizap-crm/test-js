@@ -371,20 +371,14 @@
         if (copyNum==2 || copyNum==4) pos_Y += deltaY; 
         
         doc.setFont('王漢宗中明體繁');           
-//        doc.setFontSize(9); 
-//        doc.text($("#折讓對象名稱第一行").val(), pos_X+124, pos_Y+58);                   
-//        doc.text($("#折讓對象名稱第二行").val(), pos_X+124, pos_Y+70); 
-//        doc.text($("#折讓對象地址第一行").val(), pos_X+124, pos_Y+124); 
-//        doc.text($("#折讓對象地址第二行").val(), pos_X+124, pos_Y+136);
-        
-        doc.setFontSize(10);        
-        doc.text($("#折讓對象名稱第一行").val(), pos_X+132, pos_Y+448);                   
-        doc.text($("#折讓對象名稱第二行").val(), pos_X+132, pos_Y+460); 
+        doc.setFontSize(9); 
+        doc.text($("#折讓對象名稱第一行").val(), pos_X+124, pos_Y+58);                   
+        doc.text($("#折讓對象名稱第二行").val(), pos_X+124, pos_Y+70); 
+        doc.text($("#折讓對象地址第一行").val(), pos_X+124, pos_Y+124); 
+        doc.text($("#折讓對象地址第二行").val(), pos_X+124, pos_Y+136);
         
         doc.setFontSize(12);
-        doc.text($("#折讓對象地址第一行").val(), pos_X+400, pos_Y+428); 
-        doc.text($("#折讓對象地址第二行").val(), pos_X+400, pos_Y+445);        
-        doc.text($("#折讓對象統一編號").val(), pos_X+132, pos_Y+485);  
+        doc.text($("#折讓對象統一編號").val(), pos_X+124, pos_Y+100);  
         
         var dateStr = $("#折讓日期").val();
         var dateArr=dateStr.split('-');
