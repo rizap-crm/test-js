@@ -1,38 +1,588 @@
 <!doctype html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8">
-    <title>jsPDF Preview</title>
+    <title>折讓單</title>
   </head>
 
   <body>
-    <iframe id="iframe123" frameborder="0" width="400" height="500"> 
-    </iframe>
-    
-    <script src = "jspdf.umd.2.3.0.js"></script>
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-    </script>
-    
-    <script src = "王漢宗中明體繁-normal.js"></script>
-    <script src="rebate-base64.js"></script>
+<!--
+    <div style="margin-left:30px; font-size:25px; width:1000px; text-align: center" >
+      <span>折讓單產生器</span>
+      <button style="margin-left:30px; font-size:25px; width:100px; text-align: center">更新</button>
+    </div>
+-->
 
-    <script>
-      window.jsPDF = window.jspdf.jsPDF; 
+    <div  >
+      <span style="margin-left:250px; font-size:25px">折讓單產生器</span>
+      <button style="margin-left:255px; font-size:20px; width:100px;background-color:royalblue;color:white; border-color: royalblue" onclick="updatePDF()">更新</button>
+      <button style="margin-left:310px; font-size:20px; width:100px;background-color:royalblue;color:white; border-color: royalblue" onclick="alert(APIexample)">API 範例</button>
+    </div>        
+
+   <!-- PDF 顯示區域 -->
+<!-- landscape   <iframe id="iframe123" frameborder="0" width="900" height="700" style="margin-left:10px;margin-bottom:30px; float:left" >-->
+    <iframe id="iframe123" frameborder="0" width="620" height="910" style="margin-left:30px; float:left" >
+    </iframe>
+  
+    <div style="margin-left:10px; float:left">
       
+      <label style="margin-bottom:5px; margin-top:10px">折讓對象名稱第一行:</label>
+      <input type="text" id="折讓對象名稱第一行" style="width:352px;font-size:16px"><br>
+           
+      <label style="margin-bottom:6px">折讓對象名稱第二行:</label>
+      <input type="text" id="折讓對象名稱第二行" style="width:352px;font-size:16px"><br>
+                 
+      <label style="margin-bottom:7px">折讓對象統一編號:</label>
+      <input type="text" id="折讓對象統一編號" style="width:352px;font-size:16px"><br>   
+           
+      <label style="margin-bottom:6px">折讓對象地址第一行:</label>
+      <input type="text" id="折讓對象地址第一行" style="width:352px;font-size:16px"><br>                        
+           
+      <label style="margin-bottom:6px">折讓對象地址第二行:</label>
+      <input type="text" id="折讓對象地址第二行" style="width:352px;font-size:16px"><br>    
+                        
+      <label style="margin-bottom:8px">折讓日期:</label>
+      <input type="date" id="折讓日期" style="width:352px;font-size:18px"><br>
+
+      <label style="margin-bottom:8px">折讓合計金額:</label>
+      <input type="text" id="折讓合計金額" style="width:352px;font-size:16px"><br>               
+
+      <label style="margin-bottom:0px">折讓合計營樣稅額:</label>
+      <input type="text" id="折讓合計營樣稅額" style="width:352px;font-size:16px"><br>  
+                 
+      <hr>
+            
+      <label>發票一聯式:</label>
+      <select id="發票一聯式" style="width:358px; height:23px;font-size:16px;margin-bottom:3px">
+        <option value="二">二聯式</option>
+        <option value="三">三聯式</option>
+      </select><br>
+      
+      <label style="margin-bottom:7px">發票一日期:</label>
+      <input type="date" id="發票一日期" style="width:352px;font-size:18px"><br>
+            
+      <label style="margin-bottom:7px">發票一號碼:</label>
+      <input type="text" id="發票一號碼" style="width:352px;font-size:16px"><br>      
+            
+      <label style="margin-bottom:7px">發票一品名(1):</label>
+      <input type="text" id="發票一品名1" style="width:352px;font-size:16px"><br>
+
+      <label style="margin-bottom:7px">發票一品名(2):</label>
+      <input type="text" id="發票一品名2" style="width:352px;font-size:16px"><br>
+                                         
+      <label style="margin-bottom:7px">發票一品名(3):</label>
+      <input type="text" id="發票一品名3" style="width:352px;font-size:16px"><br>
+                                      
+      <label style="margin-bottom:7px">發票一數量:</label>
+      <input type="text" id="發票一數量" style="width:352px;font-size:16px"><br> 
+                  
+      <label style="margin-bottom:7px">發票一單價:</label>
+      <input type="text" id="發票一單價" style="width:198px;font-size:16px">
+       字體大小 
+      <input type="text" id="發票一單價size" style="width:20px;font-size:16px">
+      <button style="font-size:16px" onclick="發票一單價size_change(1)">+</button> 
+      <button style="font-size:16px" onclick="發票一單價size_change(-1)">-</button>  
+    
+      <br>                                   
+      <label style="margin-bottom:7px">發票一折讓金額:</label>
+      <input type="text" id="發票一折讓金額" style="width:352px;font-size:16px"><br>   
+
+      <label style="margin-bottom:7px">發票一折讓營業稅額:</label>
+      <input type="text" id="發票一折讓營業稅額" style="width:352px;font-size:16px"><br>  
+                                          
+      <label style="margin-bottom:0px">發票一是否應稅:</label>
+      <select id="發票一是否應稅" style="width:358px; height:23px;font-size:16px">
+        <option value=1>應稅(5%)</option>
+        <option value=2>零稅率(0%)</option>
+        <option value=3>免稅(0%)</option>        
+      </select><br>  
+       
+      <hr>
+
+      <label>發票二聯式:</label>
+      <select id="發票二聯式" style="width:358px; height:23px;font-size:16px;margin-bottom:3px">
+        <option value="二">二聯式</option>
+        <option value="三">三聯式</option>
+      </select><br>
+           
+      <label style="margin-bottom:7px">發票二日期:</label>
+      <input type="date" id="發票二日期" style="width:352px;font-size:18px"><br>
+            
+      <label style="margin-bottom:7px">發票二號碼:</label>
+      <input type="text" id="發票二號碼" style="width:352px;font-size:16px"><br>      
+            
+      <label style="margin-bottom:7px">發票二品名(1):</label>
+      <input type="text" id="發票二品名1" style="width:352px;font-size:16px"><br>  
+
+      <label style="margin-bottom:7px">發票二品名(2):</label>
+      <input type="text" id="發票二品名2" style="width:352px;font-size:16px"><br>
+                              
+      <label style="margin-bottom:7px">發票二品名(3):</label>
+      <input type="text" id="發票二品名3" style="width:352px;font-size:16px"><br>                                           
+                                          
+      <label style="margin-bottom:7px">發票二數量:</label>
+      <input type="text" id="發票二數量" style="width:352px;font-size:16px"><br>
+                  
+      <label style="margin-bottom:7px">發票二單價:</label>
+      <input type="text" id="發票二單價" style="width:198px;font-size:16px">
+       字體大小 
+      <input type="text" id="發票二單價size" style="width:20px;font-size:16px">
+      <button style="font-size:16px" onclick="發票二單價size_change(1)">+</button> 
+      <button style="font-size:16px" onclick="發票二單價size_change(-1)">-</button>   
+       
+      <br>
+                  
+      <label style="margin-bottom:7px">發票二折讓金額:</label>
+      <input type="text" id="發票二折讓金額" style="width:352px;font-size:16px"><br>   
+                  
+      <label style="margin-bottom:7px">發票二折讓營業稅額:</label>
+      <input type="text" id="發票二折讓營業稅額" style="width:352px;font-size:16px"><br>                   
+      <label style="margin-bottom:0px">發票二是否應稅:</label>
+      <select id="發票二是否應稅" style="width:358px; height:23px;font-size:16px">
+        <option value=1>應稅(5%)</option>
+        <option value=2>零稅率(0%)</option>
+        <option value=3>免稅(0%)</option>        
+      </select><br><br>         
+                         
+                                                      
+    </div>
+    
+    <!-- V1.3.2 -->
+    <!--<script src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>-->
+    <!--<script src = "jspdf.debug.1.3.2.js"></script>-->
+    
+    <!-- V2.3.0 -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.0/jspdf.umd.min.js"></script>-->    
+    <script src = "jspdf.umd.2.3.0.js"></script>
+        
+    
+    <!--以下自 https://rawgit.com/MrRio/jsPDF/master/fontconverter/fontconverter.html 轉換 TTF 字型檔-->
+    <!--免費中文字型下載 https://www.fairyhorn.cc/1526/chinese-fonts-free-download -->
+    <script src = "王漢宗中明體繁-normal.js"></script>
+    <script src = "王漢宗特黑體繁-normal.js"></script>
+    <script src = "opens-normal.js"></script><!--打勾的符號字型-->
+
+    <!--rebate is a Base64 encoded string of rebate-using-王漢宗中明體繁.jpg by https://www.base64-image.de-->
+<!--    <script src="rebate-base64.js"></script>-->
+    
+    <script src="base64img.js"></script><!--將 img 進行 base64 編碼-->
+    <script src="dateConvert.js"></script>
+       
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <script src="jquery3.5.1.min.js"></script>
+    <script src="testStr.js"></script>       
+        
+    <script>
+      
+      const queryString = window.location.search;
+      //console.log(queryString);
+      const urlParams = new URLSearchParams(queryString);
+      //console.log(urlParams);
+      
+      const today = new Date();
+      const p折讓對象名稱1 = urlParams.get('折讓對象名稱第一行');
+      const p折讓對象名稱2 = urlParams.get('折讓對象名稱第二行');      
+      const p折讓對象統一編號 = urlParams.get('折讓對象統一編號');      
+      const p折讓對象地址1 = urlParams.get('折讓對象地址第一行');      
+      const p折讓對象地址2 = urlParams.get('折讓對象地址第二行');           
+      const p折讓日期 = urlParams.get('折讓日期');
+      const p折讓合計金額 = urlParams.get('折讓合計金額');     
+      const p折讓合計營樣稅額 = urlParams.get('折讓合計營樣稅額');  
+      
+      const p發票一聯式 = urlParams.get('發票一聯式');
+      const p發票一日期 = urlParams.get('發票一日期');  
+      const p發票一號碼 = urlParams.get('發票一號碼');  
+      const p發票一品名1 = urlParams.get('發票一品名1');  
+      const p發票一品名2 = urlParams.get('發票一品名2');  
+      const p發票一品名3 = urlParams.get('發票一品名3');  
+      const p發票一數量 = urlParams.get('發票一數量');  
+      const p發票一單價 = urlParams.get('發票一單價');  
+      const p發票一折讓金額 = urlParams.get('發票一折讓金額');  
+      const p發票一折讓營業稅額 = urlParams.get('發票一折讓營業稅額');  
+      const p發票一是否應稅 = urlParams.get('發票一是否應稅');   
+      
+      const p發票二聯式 = urlParams.get('發票二聯式');
+      const p發票二日期 = urlParams.get('發票二日期');  
+      const p發票二號碼 = urlParams.get('發票二號碼');  
+      const p發票二品名1 = urlParams.get('發票二品名1');  
+      const p發票二品名2 = urlParams.get('發票二品名2');  
+      const p發票二品名3 = urlParams.get('發票二品名3');  
+      const p發票二數量 = urlParams.get('發票二數量');  
+      const p發票二單價 = urlParams.get('發票二單價');  
+      const p發票二折讓金額 = urlParams.get('發票二折讓金額');  
+      const p發票二折讓營業稅額 = urlParams.get('發票二折讓營業稅額');  
+      const p發票二是否應稅 = urlParams.get('發票二是否應稅');      
+      
+      const APIexample= "https://rizap-crm.github.io/test-jsPDF?折讓對象名稱第一行=宇康醫電&折讓對象名稱第二行=有限公司&折讓對象統一編號=5666265&折讓對象地址第一行=350401 苗栗縣竹南鎮&折讓對象地址第二行=科北五路二號三樓&折讓日期=2021-03-20&折讓合計金額=55,000&折讓合計營樣稅額=2,500&發票一聯式=二&發票一日期=2021-03-02&發票一號碼=MN-02860182&發票一品名1=標準24堂課程&發票一品名2=推廣價&發票一品名3=中山店限定&發票一數量=1&發票一單價=50,000&發票一折讓金額=50,000&發票一折讓營業稅額=2,500&發票一是否應稅=1&發票二聯式=三&發票二日期=2021-03-06&發票二號碼=KN-12345678&發票二品名1=奶昔&發票二品名2=巧克力口味&發票二品名3=信義店限定&發票二數量=10&發票二單價=500&發票二折讓金額=5,000&發票二折讓營業稅額=0&發票二是否應稅=2";
+      
+      
+      // init data
+      $("#折讓對象名稱第一行").val(p折讓對象名稱1);
+      $("#折讓對象名稱第二行").val(p折讓對象名稱2);
+      $("#折讓對象統一編號").val(p折讓對象統一編號);
+      $("#折讓對象地址第一行").val(p折讓對象地址1);
+      $("#折讓對象地址第二行").val(p折讓對象地址2);
+      $("#折讓日期").val(p折讓日期);
+      $("#折讓合計金額").val(p折讓合計金額);
+      $("#折讓合計營樣稅額").val(p折讓合計營樣稅額);
+      
+      $("#發票一聯式").val(p發票一聯式);
+      $("#發票一日期").val(p發票一日期);
+      $("#發票一號碼").val(p發票一號碼); //"MN-02860182"
+      $("#發票一品名1").val(p發票一品名1);
+      $("#發票一品名2").val(p發票一品名2);
+      $("#發票一品名3").val(p發票一品名3);
+      $("#發票一數量").val(p發票一數量);
+      
+      $("#發票一單價").val(p發票一單價);
+      $("#發票一單價size").val("11");
+      
+      $("#發票一折讓金額").val(p發票一折讓金額);
+      $("#發票一折讓營業稅額").val(p發票一折讓營業稅額);
+      $("#發票一是否應稅").val(p發票一是否應稅);
+      
+      $("#發票二聯式").val(p發票二聯式);
+      $("#發票二日期").val(p發票二日期);
+      $("#發票二號碼").val(p發票二號碼); //"MN-02860182"
+      $("#發票二品名1").val(p發票二品名1);
+      $("#發票二品名2").val(p發票二品名2);
+      $("#發票二品名3").val(p發票二品名3);
+      $("#發票二數量").val(p發票二數量);
+      
+      $("#發票二單價").val(p發票二單價);
+      $("#發票二單價size").val("11");
+      
+      $("#發票二折讓金額").val(p發票二折讓金額);
+      $("#發票二折讓營業稅額").val(p發票二折讓營業稅額);
+      $("#發票二是否應稅").val(p發票二是否應稅);         
+    
+      // end of init data
+       
+      var startX=0;
+      var startY=0;
+      var deltaX=0;
+      var deltaY=570;
+      var itemY1L1=262;
+      var itemY1L2=278;        
+      var itemY1L3=294;       
+      
+      // doc.setPage(1); //start from page #1
+      // doc.setFillColor(0,0,255); //=> R,G,B
+      // doc.rect(x,y,w,h,'F'); // Fill rect with 
+      // doc.setTextColor(0,0,255); //=> R,G,B
+      // doc.text('aaa', x,y); // text with set text color
+      // update pdf
+      // $("#iframe123").attr("src", doc.output('datauristring'));
+
+      // 雖然可以用 PNG 圖檔，但透明處會變黑色
+      
+     
+      var img1 = new Image(); img1.src = "rebate-using-王漢宗中明體繁1.jpg";      
+      var img2 = new Image(); img2.src = "rebate-using-王漢宗中明體繁2.jpg";  
+      var img3 = new Image(); img3.src = "rebate-using-王漢宗中明體繁3.jpg";  
+      var img4 = new Image(); img4.src = "rebate-using-王漢宗中明體繁4.jpg";  
+            
+      var img1Loaded = false;
+      var backgroundStr1;
+      img1.onload = function () {
+        backgroundStr1=imgToBase64(img1); img1Loaded = true;
+      }
+      var img2Loaded = false;
+      var backgroundStr2;
+      img2.onload = function () {
+        backgroundStr2=imgToBase64(img2); img2Loaded = true;
+      }
+      var img3Loaded = false;
+      var backgroundStr3;
+      img3.onload = function () {
+        backgroundStr3=imgToBase64(img3); img3Loaded = true;
+      }
+      var img4Loaded = false;
+      var backgroundStr4;
+      img4.onload = function () {
+        backgroundStr4=imgToBase64(img4); img4Loaded = true;
+      }      
+          
+      var loadingImg = setInterval((()=>{ 
+        console.log("Images are loading ...");
+        if ( img1Loaded && img2Loaded && img3Loaded && img4Loaded ) {
+          console.log("Four images are loaded!");
+          clearInterval(loadingImg);
+          //drawPDF(backgroundStr1,backgroundStr2,backgroundStr3,backgroundStr4);
+          updatePDF();
+        } 
+      }), 50);      
+      
+      window.jsPDF = window.jspdf.jsPDF; // add this line of code    
       var opt = {
-       orientation: 'p', unit: 'mm',
-       format: 'a4',     putOnlyUsedFonts:true,
+       orientation: 'p',
+       hotfixes: ["px_scaling"],
+       unit: 'px',
+       format: 'a4',
+       putOnlyUsedFonts:true,
        floatPrecision: 16 // or "smart", default is 16
+      }   
+      
+      var doc;
+      
+      function 發票一單價size_change(increment){
+        var fontSize = parseInt($("#發票一單價size").val());       
+        fontSize += increment;
+
+        $("#發票一單價size").val(fontSize);
       }
       
-      var doc = new jsPDF(opt);
-//      doc.setFont('王漢宗中明體繁');
-//      doc.setFontSize(24);
-//      doc.text('使用 王漢宗中明體繁 字型', 10, 10);
+      function 發票二單價size_change(increment){
+        var fontSize = parseInt($("#發票二單價size").val());       
+        fontSize += increment;
 
-      doc.addImage(rebate, 10, 10, 780, 480);
-      $("#iframe123").attr("src", doc.output('datauristring'));
+        $("#發票二單價size").val(fontSize);
+      }      
+      function updatePDF(){
+        console.log("updating");
+        initPDF();
+        drawPagePDF(1);
+        doc.addPage();
+        drawPagePDF(2);          
+        showPDF();   
+        console.log("done");
+      }
+      
+      function drawPagePDF(pageNum){
+        if (pageNum == 1) {
+          doc.addImage(backgroundStr1, 10, 30,  770, 474, undefined, 'FAST');
+          doc.addImage(backgroundStr2, 10, 600, 770, 474, undefined, 'FAST');
+        } else {
+          doc.addImage(backgroundStr3, 10, 30,  770, 474, undefined, 'FAST');
+          doc.addImage(backgroundStr4, 10, 600, 770, 474, undefined, 'FAST');          
+        }
+        
+        drawCopy(1);
+        drawCopy(2);       
+      }
+      
+      function drawCopy(copyNum){
+        
+        var pos_X = startX;
+        var pos_Y = startY;
+        var 發票間隔 = 60;
+        
+        if (copyNum==2 || copyNum==4) pos_Y += deltaY; 
+        
+        doc.setFont('王漢宗中明體繁');           
+//        doc.setFontSize(9); 
+//        doc.text($("#折讓對象名稱第一行").val(), pos_X+124, pos_Y+58);                   
+//        doc.text($("#折讓對象名稱第二行").val(), pos_X+124, pos_Y+70); 
+//        doc.text($("#折讓對象地址第一行").val(), pos_X+124, pos_Y+124); 
+//        doc.text($("#折讓對象地址第二行").val(), pos_X+124, pos_Y+136);
+        
+        doc.setFontSize(10);        
+        doc.text($("#折讓對象名稱第一行").val(), pos_X+132, pos_Y+448);                   
+        doc.text($("#折讓對象名稱第二行").val(), pos_X+132, pos_Y+460); 
+        
+        doc.setFontSize(12);
+        doc.text($("#折讓對象地址第一行").val(), pos_X+400, pos_Y+428); 
+        doc.text($("#折讓對象地址第二行").val(), pos_X+400, pos_Y+445);        
+        doc.text($("#折讓對象統一編號").val(), pos_X+132, pos_Y+485);  
+        
+        var dateStr = $("#折讓日期").val();
+        var dateArr=dateStr.split('-');
+        var dateROOC = dateArr[0]-"1911";
+        if ($("#折讓日期").val()!="") {
+          doc.text(dateROOC.toString(), pos_X+390, pos_Y+129);  //年
+          doc.text(dateArr[1], pos_X+450, pos_Y+129);  //月
+          doc.text(dateArr[2], pos_X+505, pos_Y+129);  //日  
+        }
+        
+        doc.setFontSize(11);
+        dateStr = $("#發票一日期").val();
+        dateArr=dateStr.split('-');
+        dateROOC = dateArr[0]-"1911";
+        var formatStr=dateROOC.toString()+"/"+dateArr[1]+"/"+dateArr[2];        
+        if ($("#發票一聯式").val()!=null) doc.text($("#發票一聯式").val(), pos_X+23, pos_Y+itemY1L1);    //聯式          
+        if ($("#發票一日期").val()!="") doc.text(formatStr, pos_X+47, pos_Y+itemY1L1);                //發票日期        
+        doc.text($("#發票一號碼").val(), pos_X+122, pos_Y+itemY1L1);    //發票號碼          
+        doc.text($("#發票一品名1").val(), pos_X+240, pos_Y+itemY1L1);    //發票品名     
+        doc.text($("#發票一品名2").val(), pos_X+240, pos_Y+itemY1L2);    //發票品名 
+        doc.text($("#發票一品名3").val(), pos_X+240, pos_Y+itemY1L3);    //發票品名
+        doc.text($("#發票一數量").val(), pos_X+355, pos_Y+itemY1L1);    //數量   
+        
+        doc.setFontSize(parseInt($("#發票一單價size").val()));           
+        doc.text($("#發票一單價").val(), pos_X+386, pos_Y+itemY1L1);    //發票一單價 
+        doc.setFontSize(11);   
+        
+        doc.text($("#發票一折讓金額").val(), pos_X+450, pos_Y+itemY1L1);    //發票一折讓金額 
+        doc.text($("#發票一折讓營業稅額").val(), pos_X+565, pos_Y+itemY1L1);    //發票一折讓營業稅額   
+        
+        dateStr = $("#發票二日期").val();
+        dateArr=dateStr.split('-');
+        dateROOC = dateArr[0]-"1911";
+        var formatStr=dateROOC.toString()+"/"+dateArr[1]+"/"+dateArr[2];        
+        if ($("#發票二聯式").val()!=null) doc.text($("#發票二聯式").val(), pos_X+23, pos_Y+發票間隔+itemY1L1);  //聯式         
+        if ($("#發票二日期").val()!="") doc.text(formatStr, pos_X+47, pos_Y+發票間隔+itemY1L1);                //發票日期
+        doc.text($("#發票二號碼").val(), pos_X+122, pos_Y+發票間隔+itemY1L1);    //發票號碼          
+        doc.text($("#發票二品名1").val(), pos_X+240, pos_Y+發票間隔+itemY1L1);    //發票品名     
+        doc.text($("#發票二品名2").val(), pos_X+240, pos_Y+發票間隔+itemY1L2);    //發票品名 
+        doc.text($("#發票二品名3").val(), pos_X+240, pos_Y+發票間隔+itemY1L3);    //發票品名
+        doc.text($("#發票二數量").val(), pos_X+355, pos_Y+發票間隔+itemY1L1);    //數量    
+        
+        doc.setFontSize(parseInt($("#發票二單價size").val()));        
+        doc.text($("#發票二單價").val(), pos_X+386, pos_Y+發票間隔+itemY1L1);    //發票一單價 
+        doc.setFontSize(11);             
+
+        doc.text($("#發票二折讓金額").val(), pos_X+450, pos_Y+發票間隔+itemY1L1);    //發票一折讓金額 
+   
+        
+        doc.text($("#發票二折讓營業稅額").val(), pos_X+565, pos_Y+發票間隔+itemY1L1);  //發票一折讓營業稅額        
+        
+        doc.text($("#折讓合計金額").val(), pos_X+450, pos_Y+383);    //折讓合計金額  
+        doc.text($("#折讓合計營樣稅額").val(), pos_X+565, pos_Y+383);    //折讓合計營樣稅額                        
+        doc.setFont('opens');
+        doc.setFontSize(14);
+        
+        switch($("#發票一是否應稅").val()){
+          case "1": pos_X =  0; break;
+          case "2": pos_X = 40; break;
+          case "3": pos_X = 80; break;
+          default:  pos_X =-10; 
+        }
+        if (pos_X >-1) doc.text('✔', pos_X+640, pos_Y+itemY1L1); //應稅1 
+
+        switch($("#發票二是否應稅").val()){
+          case "1": pos_X =  0; break;
+          case "2": pos_X = 40; break;
+          case "3": pos_X = 80; break;
+          default:  pos_X =-10; 
+        }
+        if (pos_X >-1) doc.text('✔', pos_X+640, pos_Y+發票間隔+itemY1L1); //應稅1         
+      }
+      
+      function initPDF() {
+        doc = new jsPDF(opt);
+        doc.setFont('王漢宗中明體繁');        
+      }
+      
+      function showPDF() {
+        $("#iframe123").attr("src", doc.output('datauristring'));
+      }
+      
+      function drawPDF(background1,background2,background3,background4){
+        doc = new jsPDF(opt);
+        doc.setFont('王漢宗中明體繁');
+        
+        // doc.addImage(rebate, 10, 10, 780, 480);
+        //doc.addImage(testStr, 10, 10, 180, 180);
+        doc.addImage(background1, 10, 30,  770, 474, undefined, 'FAST');
+        doc.addImage(background2, 10, 600, 770, 474, undefined, 'FAST');
+     
+        
+        // 第一聯 & 第二聯
+        doc.setFontSize(9); 
+        doc.text($("#折讓對象名稱第一行").val(), startX+124, startY+58);            
+        doc.text($("#折讓對象名稱第一行").val(), startX+124, startY+deltaY+58);           
+        doc.text($("#折讓對象名稱第二行").val(), startX+124, startY+70); 
+        doc.text($("#折讓對象名稱第二行").val(), startX+124, startY+deltaY+70); 
+        doc.text($("#折讓對象地址第一行").val(), startX+124, startY+124); 
+        doc.text($("#折讓對象地址第一行").val(), startX+124, startY+deltaY+124); 
+        doc.text($("#折讓對象地址第二行").val(), startX+124, startY+136);
+        doc.text($("#折讓對象地址第二行").val(), startX+124, startY+deltaY+136);
+        
+        doc.setFontSize(12);
+        doc.text($("#折讓對象統一編號").val(), startX+124, startY+100);  
+        doc.text($("#折讓對象統一編號").val(), startX+124, startY+deltaY+100);  
+        
+        var dateStr = $("#折讓日期").val();
+        var dateArr=dateStr.split('-');
+        var dateROOC = dateArr[0]-"1911";
+        doc.text(dateROOC.toString(), startX+390, startY+129);  //年
+        doc.text(dateROOC.toString(), startX+390, startY+deltaY+129);  //年
+        doc.text(dateArr[1], startX+450, startY+129);  //月
+        doc.text(dateArr[1], startX+450, startY+deltaY+129);  //月
+        doc.text(dateArr[2], startX+505, startX+129);  //日  
+        doc.text(dateArr[2], startX+505, startX+deltaY+129);  //日  
+        
+        doc.setFontSize(11);
+        doc.text($("#發票一聯式").val(), startX+23, startY+itemY1L1);    //聯式   
+        doc.text($("#發票一聯式").val(), startX+23, startY+deltaY+itemY1L1);    //聯式   
+        
+        dateStr = $("#發票一日期").val();
+        dateArr=dateStr.split('-');
+        dateROOC = dateArr[0]-"1911";
+        var formatStr=dateROOC.toString()+"/"+dateArr[1]+"/"+dateArr[2];       
+        
+        doc.text(formatStr, startX+47, startX+itemY1L1);    //發票日期  
+        doc.text(formatStr, startX+47, startX+deltaY+itemY1L1);    //發票日期  
+        
+        doc.text($("#發票一號碼").val(), startX+122, startY+itemY1L1);    //發票號碼          
+        doc.text($("#發票一號碼").val(), startX+122, startY+deltaY+itemY1L1);    //發票號碼   
+  
+        doc.text($("#發票一品名1").val(), startX+240, startY+itemY1L1);    //發票品名 
+        doc.text($("#發票一品名1").val(), startX+240, startY+deltaY+itemY1L1);    //發票品名 
+        
+        doc.text($("#發票一品名2").val(),       startX+240, startY+itemY1L2);    //發票品名 
+        doc.text($("#發票一品名2").val(),       startX+240, startY+deltaY+itemY1L2);    //發票品名 
+        
+        doc.text('中山店限定',      startX+240, startY+itemY1L3);    //發票品名 
+        doc.text('1',              startX+355, startY+itemY1L1);    //數量         
+        doc.text('50,000',        startX+386, startY+itemY1L1);    //單價         
+        doc.text('50,000',        startX+450, startY+itemY1L1);    //折讓金額         
+        doc.text('2,500',         startX+565, startY+itemY1L1);    //營業稅額  
+        doc.text('50,000',        startX+450, startY+383);    //合計折讓金額         
+        doc.text('2,500',         startX+565, startY+383);    //合計營業稅額          
+
+         
+
+        // 第一聯 和 第二聯 打勾 部分
+        doc.setFont('opens');
+        doc.setFontSize(14);
+        doc.text('✔', startX+640, startY+itemY1L1); //應稅1        
+        doc.text('✔', startX+640, startY+deltaY+itemY1L1); //應稅2 
+                  
+
+        doc.addPage();
+
+        doc.addImage(background3, 10, 30,  770, 474, undefined, 'FAST');
+        doc.addImage(background4, 10, 600, 770, 474, undefined, 'FAST');
+        
+
+        // 第三聯 和 第四聯 打勾 部分
+        doc.setFont('opens');
+        doc.setFontSize(14);
+        doc.text('✔', startX+640, startY+itemY1L1); //應稅1        
+        doc.text('✔', startX+640, startY+deltaY+itemY1L1); //應稅2         
+        
+        //doc.save("test.pdf");
+        //document.getElementById("iframe123").src = doc.output('datauristring');//在iframe中顯示
+        $("#iframe123").attr("src", doc.output('datauristring'));
+      }
+      
+  
+//      var img = new Image();
+//      img.src = "rebate-using-王漢宗中明體繁.jpg";
+
+      
+//      img.addEventListener("load", function() {
+//
+//        var backgroundStr=imgToBase64(img);
+//        
+//        drawPDF(backgroundStr);        
+//        
+//      }, false);
+      
+
+                                         
+                                        
+      
     </script>
-    
+
+    <style>
+      label {
+        width:150px;
+        display: inline-block;
+      }      
+    </style>
+
   </body>
+
 </html>
