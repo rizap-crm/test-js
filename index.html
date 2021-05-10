@@ -15,7 +15,7 @@
 -->
 
     <div  >
-      <span style="margin-left:250px; font-size:25px">折讓單產生器 v1.1</span>
+      <span style="margin-left:250px; font-size:25px">折讓單產生器 v1.2</span>
       <button style="margin-left:255px; font-size:20px; width:100px;background-color:royalblue;color:white; border-color: royalblue" onclick="updatePDF()">更新</button>
       <button style="margin-left:310px; font-size:20px; width:100px;background-color:royalblue;color:white; border-color: royalblue" onclick="alert(APIexample)">API 範例</button>
     </div>        
@@ -26,6 +26,23 @@
     </iframe>
   
     <div style="margin-left:10px; float:left">
+     
+      <label style="margin-bottom:5px; margin-top:10px">RIZAP名稱第一行:</label>
+      <input type="text" id="RIZAP名稱第一行" style="width:352px;font-size:16px"><br>
+           
+      <label style="margin-bottom:6px">RIZAP名稱第二行:</label>
+      <input type="text" id="RIZAP名稱第二行" style="width:352px;font-size:16px"><br>
+                 
+      <label style="margin-bottom:7px">RIZAP統一編號:</label>
+      <input type="text" id="RIZAP統一編號" style="width:352px;font-size:16px"><br>   
+           
+      <label style="margin-bottom:6px">RIZAP地址第一行:</label>
+      <input type="text" id="RIZAP地址第一行" style="width:352px;font-size:16px"><br>                     
+           
+      <label style="margin-bottom:6px">RIZAP地址第二行:</label>
+      <input type="text" id="RIZAP地址第二行" style="width:352px;font-size:16px"><br>      
+      
+      <hr>
       
       <label style="margin-bottom:5px; margin-top:10px">折讓對象名稱第一行:</label>
       <input type="text" id="折讓對象名稱第一行" style="width:352px;font-size:16px"><br>
@@ -37,7 +54,7 @@
       <input type="text" id="折讓對象統一編號" style="width:352px;font-size:16px"><br>   
            
       <label style="margin-bottom:6px">折讓對象地址第一行:</label>
-      <input type="text" id="折讓對象地址第一行" style="width:352px;font-size:16px"><br>                        
+      <input type="text" id="折讓對象地址第一行" style="width:352px;font-size:16px"><br>                     
            
       <label style="margin-bottom:6px">折讓對象地址第二行:</label>
       <input type="text" id="折讓對象地址第二行" style="width:352px;font-size:16px"><br>    
@@ -278,10 +295,10 @@
       // 雖然可以用 PNG 圖檔，但透明處會變黑色
       
      
-      var img1 = new Image(); img1.src = "rebate-using-王漢宗中明體繁1.jpg";      
-      var img2 = new Image(); img2.src = "rebate-using-王漢宗中明體繁2.jpg";  
-      var img3 = new Image(); img3.src = "rebate-using-王漢宗中明體繁3.jpg";  
-      var img4 = new Image(); img4.src = "rebate-using-王漢宗中明體繁4.jpg";  
+      var img1 = new Image(); img1.src = "rebate-using-王漢宗中明體繁1B.jpg";      
+      var img2 = new Image(); img2.src = "rebate-using-王漢宗中明體繁2B.jpg";  
+      var img3 = new Image(); img3.src = "rebate-using-王漢宗中明體繁3B.jpg";  
+      var img4 = new Image(); img4.src = "rebate-using-王漢宗中明體繁4B.jpg";  
             
       var img1Loaded = false;
       var backgroundStr1;
@@ -371,11 +388,13 @@
         if (copyNum==2 || copyNum==4) pos_Y += deltaY; 
         
         doc.setFont('王漢宗中明體繁');           
-//        doc.setFontSize(9); 
-//        doc.text($("#折讓對象名稱第一行").val(), pos_X+124, pos_Y+58);                   
-//        doc.text($("#折讓對象名稱第二行").val(), pos_X+124, pos_Y+70); 
-//        doc.text($("#折讓對象地址第一行").val(), pos_X+124, pos_Y+124); 
-//        doc.text($("#折讓對象地址第二行").val(), pos_X+124, pos_Y+136);
+        doc.setFontSize(9); 
+        doc.text($("#RIZAP名稱第一行").val(), pos_X+124, pos_Y+58);                   
+        doc.text($("#RIZAP名稱第二行").val(), pos_X+124, pos_Y+70); 
+        doc.text($("#RIZAP地址第一行").val(), pos_X+124, pos_Y+124); 
+        doc.text($("#RIZAP地址第二行").val(), pos_X+124, pos_Y+136);
+        doc.setFontSize(12);
+        doc.text($("#RIZAP統一編號").val(), pos_X+124, pos_Y+98);
         
         doc.setFontSize(10);        
         doc.text($("#折讓對象名稱第一行").val(), pos_X+132, pos_Y+448);                   
